@@ -1,0 +1,14 @@
+{
+   "extends": "@acme/tsconfig/base.json",
+   "compilerOptions": {
+      "target": "ESNext",
+      "lib": ["ESNext", "DOM"],
+      "module": "ESNext",
+      /* Bundler mode */
+      "jsx": "preserve",
+      "moduleResolution": "bundler",
+      "allowImportingTsExtensions": true,
+      "noEmit": true
+   },
+   "include": ["src", "*.ts", "**/*.ts"]
+}

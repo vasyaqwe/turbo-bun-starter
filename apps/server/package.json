@@ -1,0 +1,37 @@
+{
+  "name": "@acme/server",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "bun run --env-file=../../.env --hot src/index.ts",
+    "start": "NODE_ENV=production bun run --env-file=../../.env src/index.ts",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@acme/db": "workspace:*",
+    "@acme/emails": "workspace:*",
+    "@hono/trpc-server": "^0.3.1",
+    "@js-temporal/polyfill": "^0.4.4",
+    "@lucia-auth/adapter-drizzle": "^1.0.7",
+    "@t3-oss/env-core": "^0.10.1",
+    "@trpc/server": "11.0.0-rc.403",
+    "@unkey/ratelimit": "^0.1.10",
+    "@upstash/qstash": "2.1.8",
+    "arctic": "^1.9.1",
+    "hono": "4.4.5",
+    "lucia": "^3.2.0",
+    "oslo": "^1.2.0",
+    "superjson": "2.2.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@acme/eslint-config": "workspace:*",
+    "@acme/prettier-config": "workspace:*",
+    "@acme/tsconfig": "workspace:*",
+    "@types/bun": "latest",
+    "typescript": "^5.4.5"
+  },
+  "prettier": "@acme/prettier-config"
+}

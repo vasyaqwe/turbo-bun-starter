@@ -1,12 +1,8 @@
-import { cache } from "react"
-import { cookies } from "next/headers"
 import { DrizzlePostgreSQLAdapter } from "@lucia-auth/adapter-drizzle"
 import { GitHub, Google } from "arctic"
-import { eq } from "drizzle-orm"
 import { Lucia, TimeSpan } from "lucia"
 import { createDate } from "oslo"
 import { alphabet, generateRandomString } from "oslo/crypto"
-
 import { db } from "@acme/db/client"
 import {
    emailVerificationCodes,
@@ -15,13 +11,16 @@ import {
    users,
 } from "@acme/db/schema/users"
 
-import { env } from "./env"
+import { env } from "../env"
+import { getCookie } from "hono/cookie"
+import type { Context } from "hono"
+import { eq } from "@acme/db"
 
 export const github = new GitHub(env.GITHUB_CLIENT_ID, env.GITHUB_CLIENT_SECRET)
 export const google = new Google(
    env.GOOGLE_CLIENT_ID,
    env.GOOGLE_CLIENT_SECRET,
-   env.NEXT_PUBLIC_BASE_URL + "/login/google/callback"
+   env.PUBLIC_BASE_URL + "/login/google/callback"
 )
 
 export const initLucia = () => {
@@ -49,37 +48,30 @@ export const initLucia = () => {
 
 export const lucia = initLucia()
 
-export const uncachedGetAuthSession = async () => {
-   const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null
+export const getAuthSession = async (c: Context) => {
+   const sessionId = getCookie(c, lucia.sessionCookieName) ?? null
+
    if (!sessionId) return { user: null, session: null }
 
    const { session, user } = await lucia.validateSession(sessionId)
-   // next.js throws when you attempt to set cookie when rendering page
-   try {
-      if (session?.fresh) {
-         const sessionCookie = lucia.createSessionCookie(session.id)
-         cookies().set(
-            sessionCookie.name,
-            sessionCookie.value,
-            sessionCookie.attributes
-         )
-      }
-      if (!session) {
-         const sessionCookie = lucia.createBlankSessionCookie()
-         cookies().set(
-            sessionCookie.name,
-            sessionCookie.value,
-            sessionCookie.attributes
-         )
-      }
-   } catch {
-      console.error("Failed to set session cookie")
+
+   if (session?.fresh) {
+      c.header(
+         "Set-Cookie",
+         lucia.createSessionCookie(session.id).serialize(),
+         {
+            append: true,
+         }
+      )
+   }
+   if (!session) {
+      c.header("Set-Cookie", lucia.createBlankSessionCookie().serialize(), {
+         append: true,
+      })
    }
 
    return { user, session }
 }
-
-export const getAuthSession = cache(uncachedGetAuthSession)
 
 export const generateEmailVerificationCode = async ({
    tx,

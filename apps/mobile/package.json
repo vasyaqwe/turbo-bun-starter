@@ -41,7 +41,7 @@
       "superjson": "2.2.1"
    },
    "devDependencies": {
-      "@acme/api": "workspace:*",
+      "@acme/server": "workspace:*",
       "@acme/eslint-config": "workspace:*",
       "@acme/prettier-config": "workspace:*",
       "@acme/tailwind-config": "workspace:*",
@@ -51,8 +51,6 @@
       "@babel/runtime": "^7.24.5",
       "@types/babel__core": "^7.20.5",
       "@types/react": "^18.3.2",
-      "eslint": "^9.2.0",
-      "prettier": "^3.2.5",
       "tailwindcss": "^3.4.3",
       "typescript": "^5.4.5"
    },

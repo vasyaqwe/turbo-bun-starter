@@ -1,19 +1,19 @@
 import { initTRPC, TRPCError } from "@trpc/server"
 import { Ratelimit } from "@unkey/ratelimit"
 import { ZodError } from "zod"
-
-import type { Session } from "@acme/auth"
 import { db } from "@acme/db/client"
 import { emails } from "@acme/emails"
-import { env } from "./env"
-import { transformer } from "./shared"
+import { env } from "../env"
+import { type Session } from "../auth"
+import type { Context } from "hono"
+import SuperJSON from "superjson"
 
 export const createTRPCContext = (opts: {
-   headers: Headers
    session: Session | null
+   honoCtx: Context
 }) => {
    const session = opts.session
-   const source = opts.headers.get("x-trpc-source") ?? "unknown"
+   const source = opts.honoCtx.req.header("x-trpc-source") ?? "unknown"
 
    console.log(">>> tRPC Request from", source, "by", session?.user)
 
@@ -22,11 +22,12 @@ export const createTRPCContext = (opts: {
       session,
       emails,
       db,
+      honoCtx: opts.honoCtx,
    }
 }
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
-   transformer,
+   transformer: SuperJSON,
    errorFormatter: ({ shape, error }) => ({
       ...shape,
       data: {
@@ -54,9 +55,9 @@ export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
    })
 })
 
-const getIp = (headers: Headers) => {
-   const forwardedFor = headers.get("x-forwarded-for")?.split(",")[0]
-   const realIp = headers.get("x-real-ip")
+const getIp = (honoCtx: Context) => {
+   const forwardedFor = honoCtx.req.header("x-forwarded-for")?.split(",")[0]
+   const realIp = honoCtx.req.header("x-real-ip")
    if (forwardedFor) return forwardedFor
    if (realIp) return realIp.trim()
    return null
@@ -72,7 +73,7 @@ export const publicRateLimitedProcedure = t.procedure.use(
          namespace: `acme_${path}`,
       })
 
-      const ip = getIp(ctx.headers)
+      const ip = getIp(ctx.honoCtx)
       if (!ip) return next()
 
       const ratelimit = await unkey.limit(ip)

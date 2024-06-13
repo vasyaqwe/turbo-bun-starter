@@ -1,14 +1,12 @@
-import { cookies } from "next/headers"
 import { TRPCError } from "@trpc/server"
 import { generateCodeVerifier, generateState } from "arctic"
 import { isWithinExpirationDate } from "oslo"
-
 import {
    generateEmailVerificationCode,
    github,
    google,
    lucia,
-} from "@acme/auth"
+} from "../../auth"
 import type { db as database } from "@acme/db/client"
 import {
    emailVerificationCodes,
@@ -18,30 +16,29 @@ import {
 } from "@acme/db/schema/users"
 import { EMAIL_FROM } from "@acme/emails"
 import { VerificationCodeEmail } from "@acme/emails/emails/verification-code-email"
-
 import {
    createTRPCRouter,
    protectedProcedure,
    publicProcedure,
    publicRateLimitedProcedure,
-} from "../trpc"
+} from "../context"
 import { eq } from "@acme/db"
-
-const env = process.env
+import { env } from "../../env"
+import { setCookie } from "hono/cookie"
 
 export const user = createTRPCRouter({
    me: protectedProcedure.query(({ ctx }) => ctx.session.user),
-   googleLogin: publicProcedure.mutation(async () => {
+   googleLogin: publicProcedure.mutation(async ({ ctx }) => {
       const state = generateState()
       const codeVerifier = generateCodeVerifier()
-      cookies().set("state", state, {
+      setCookie(ctx.honoCtx, "state", state, {
          path: "/",
          secure: env.NODE_ENV === "production",
          httpOnly: true,
          maxAge: 60 * 10,
          sameSite: "lax",
       })
-      cookies().set("google_code_verifier", codeVerifier, {
+      setCookie(ctx.honoCtx, "google_code_verifier", codeVerifier, {
          path: "/",
          secure: env.NODE_ENV === "production",
          httpOnly: true,
@@ -54,11 +51,11 @@ export const user = createTRPCRouter({
 
       return { url: url.toString() }
    }),
-   githubLogin: publicProcedure.mutation(async () => {
+   githubLogin: publicProcedure.mutation(async ({ ctx }) => {
       const state = generateState()
       const url = await github.createAuthorizationURL(state)
 
-      cookies().set("github_oauth_state", state, {
+      setCookie(ctx.honoCtx, "github_oauth_state", state, {
          path: "/",
          secure: env.NODE_ENV === "production",
          httpOnly: true,
