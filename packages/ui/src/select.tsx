@@ -78,7 +78,7 @@ const SelectContent = React.forwardRef<
       <SelectPrimitive.Content
          ref={ref}
          className={cn(
-            "shadow-shadow relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:slide-out-to-top-1",
+            "text-popover-foreground relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md bg-popover shadow-shadow data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:slide-out-to-top-1",
             position === "popper" &&
                "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
             className
@@ -121,9 +121,7 @@ const SelectItem = React.forwardRef<
    <SelectPrimitive.Item
       ref={ref}
       className={cn(
-         `relative flex w-full select-none items-center rounded-sm py-1 pl-8 pr-2
-          outline-none focus:bg-accent focus:text-foreground data-[disabled]:pointer-events-none data-[state=checked]:text-foreground 
-         data-[disabled]:opacity-50 [&>span:last-child]:flex [&>span:last-child]:w-full [&>span:last-child]:gap-2`,
+         `relative flex w-full select-none items-center rounded-sm py-1 pl-8 pr-2 outline-none focus:bg-accent focus:text-foreground data-[disabled]:pointer-events-none data-[state=checked]:text-foreground data-[disabled]:opacity-50 [&>span:last-child]:flex [&>span:last-child]:w-full [&>span:last-child]:gap-2`,
          className
       )}
       {...props}

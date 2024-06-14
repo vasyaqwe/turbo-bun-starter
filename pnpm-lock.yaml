@@ -127,7 +127,7 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
       '@types/react':
-        specifier: ^18.3.2
+        specifier: ^18.3.3
         version: 18.3.3
       tailwindcss:
         specifier: ^3.4.3
@@ -138,6 +138,9 @@ importers:
 
   apps/server:
     dependencies:
+      '@acme/api':
+        specifier: workspace:*
+        version: link:../../packages/api
       '@acme/db':
         specifier: workspace:*
         version: link:../../packages/db
@@ -159,9 +162,6 @@ importers:
       '@unkey/ratelimit':
         specifier: ^0.1.10
         version: 0.1.10
-      '@upstash/qstash':
-        specifier: 2.1.8
-        version: 2.1.8
       arctic:
         specifier: ^1.9.1
         version: 1.9.1
@@ -199,6 +199,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@acme/api':
+        specifier: workspace:*
+        version: link:../../packages/api
       '@acme/server':
         specifier: workspace:*
         version: link:../server
@@ -264,7 +267,7 @@ importers:
         specifier: ^20.12.9
         version: 20.12.12
       '@types/react':
-        specifier: ^18.3.2
+        specifier: ^18.3.3
         version: 18.3.3
       '@types/react-dom':
         specifier: ^18.3.0
@@ -293,6 +296,61 @@ importers:
       vite-tsconfig-paths:
         specifier: ^4.3.2
         version: 4.3.2(typescript@5.4.5)(vite@5.2.13(@types/node@20.12.12)(lightningcss@1.22.0)(terser@5.31.0))
+
+  packages/api:
+    dependencies:
+      '@acme/db':
+        specifier: workspace:*
+        version: link:../db
+      '@acme/emails':
+        specifier: workspace:*
+        version: link:../emails
+      '@lucia-auth/adapter-drizzle':
+        specifier: ^1.0.7
+        version: 1.0.7(lucia@3.2.0)
+      '@t3-oss/env-core':
+        specifier: ^0.10.1
+        version: 0.10.1(typescript@5.4.5)(zod@3.23.8)
+      '@trpc/server':
+        specifier: 11.0.0-rc.403
+        version: 11.0.0-rc.403
+      '@unkey/ratelimit':
+        specifier: ^0.1.10
+        version: 0.1.10
+      arctic:
+        specifier: ^1.9.1
+        version: 1.9.1
+      hono:
+        specifier: 4.4.5
+        version: 4.4.5
+      lucia:
+        specifier: ^3.2.0
+        version: 3.2.0
+      oslo:
+        specifier: ^1.2.0
+        version: 1.2.0
+      superjson:
+        specifier: 2.2.1
+        version: 2.2.1
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
+    devDependencies:
+      '@acme/eslint-config':
+        specifier: workspace:*
+        version: link:../../tooling/eslint
+      '@acme/prettier-config':
+        specifier: workspace:*
+        version: link:../../tooling/prettier
+      '@acme/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      dotenv-cli:
+        specifier: ^7.4.2
+        version: 7.4.2
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
 
   packages/db:
     dependencies:
@@ -417,7 +475,7 @@ importers:
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/react':
-        specifier: ^18.3.2
+        specifier: ^18.3.3
         version: 18.3.3
       react:
         specifier: 18.3.1
@@ -3135,9 +3193,6 @@ packages:
   '@unkey/rbac@0.1.13':
     resolution: {integrity: sha512-BUuKQb7xoI2e+UtuDvr5U0ShZkG1gG8UxG5VzL6tonmoxGVC1vP0ZS5TKMLbhjYD6Dh5SDeak95qGDsQdaX7Ew==}
 
-  '@upstash/qstash@2.1.8':
-    resolution: {integrity: sha512-p8PQ6fE1ljhnrHmP5iQiqZAVf3ljFoC4/i8f2usLQ75Emq1cCiDHvW8u/J/U/N0zCLewxxA1g1W5bGJ7+5iKyQ==}
-
   '@urql/core@2.3.6':
     resolution: {integrity: sha512-PUxhtBh7/8167HJK6WqBv6Z0piuiaZHQGYbhwpNL9aIQmLROPEdaUYkY4wh45wPQXcTpnd11l0q3Pw+TI11pdw==}
     peerDependencies:
@@ -3757,9 +3812,6 @@ packages:
   crypt@0.0.2:
     resolution: {integrity: sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==}
 
-  crypto-js@4.2.0:
-    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
-
   crypto-random-string@1.0.0:
     resolution: {integrity: sha512-GsVpkFPlycH7/fRR7Dhcmnoii54gV1nz7y4CWyeFS14N+JVBBhY+r8amRHE4BwSYal7BPTDp8isvAlCxyFt3Hg==}
     engines: {node: '>=4'}
@@ -3962,10 +4014,6 @@ packages:
 
   dotenv@16.0.3:
     resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
-    engines: {node: '>=12'}
-
-  dotenv@16.3.1:
-    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
     engines: {node: '>=12'}
 
   dotenv@16.4.5:
@@ -5208,9 +5256,6 @@ packages:
 
   join-component@1.1.0:
     resolution: {integrity: sha512-bF7vcQxbODoGK1imE2P9GS9aw4zD0Sd+Hni68IMZLj7zRnquH7dXUmMw9hDI5S/Jzt7q+IyTXN0rSg2GI0IKhQ==}
-
-  jose@4.15.5:
-    resolution: {integrity: sha512-jc7BFxgKPKi94uOvEmzlSWFFe2+vASyXaKUpdQKatWAESU2MWjDfFf0fdfc83CDKcA5QecabZeNLyfhe3yKNkg==}
 
   js-beautify@1.15.1:
     resolution: {integrity: sha512-ESjNzSlt/sWE8sciZH8kBF8BPlwXPwhR6pWKAw8bw4Bwj+iZcnKW6ONWUutJ7eObuBZQpiIb8S7OYspWrKt7rA==}
@@ -10769,11 +10814,6 @@ snapshots:
       '@unkey/error': 0.0.2
       zod: 3.23.8
 
-  '@upstash/qstash@2.1.8':
-    dependencies:
-      crypto-js: 4.2.0
-      jose: 4.15.5
-
   '@urql/core@2.3.6(graphql@15.8.0)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@15.8.0)
@@ -11492,8 +11532,6 @@ snapshots:
 
   crypt@0.0.2: {}
 
-  crypto-js@4.2.0: {}
-
   crypto-random-string@1.0.0: {}
 
   crypto-random-string@2.0.0: {}
@@ -11665,7 +11703,7 @@ snapshots:
   dotenv-cli@7.4.2:
     dependencies:
       cross-spawn: 7.0.3
-      dotenv: 16.3.1
+      dotenv: 16.4.5
       dotenv-expand: 10.0.0
       minimist: 1.2.8
 
@@ -11676,8 +11714,6 @@ snapshots:
       dotenv: 16.4.5
 
   dotenv@16.0.3: {}
-
-  dotenv@16.3.1: {}
 
   dotenv@16.4.5: {}
 
@@ -13193,8 +13229,6 @@ snapshots:
       '@sideway/pinpoint': 2.0.0
 
   join-component@1.1.0: {}
-
-  jose@4.15.5: {}
 
   js-beautify@1.15.1:
     dependencies:

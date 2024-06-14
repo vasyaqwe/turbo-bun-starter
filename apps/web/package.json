@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@acme/server": "workspace:*",
+    "@acme/api": "workspace:*",
     "@acme/ui": "workspace:*",
     "@heroicons/react": "^2.1.3",
     "@t3-oss/env-core": "^0.10.1",
@@ -34,7 +35,7 @@
     "@acme/tsconfig": "workspace:*",
     "@tanstack/router-vite-plugin": "^1.37.0",
     "@types/node": "^20.12.9",
-    "@types/react": "^18.3.2",
+    "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint-plugin-react-hooks": "^4.6.0",

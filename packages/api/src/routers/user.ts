@@ -1,12 +1,7 @@
 import { TRPCError } from "@trpc/server"
 import { generateCodeVerifier, generateState } from "arctic"
 import { isWithinExpirationDate } from "oslo"
-import {
-   generateEmailVerificationCode,
-   github,
-   google,
-   lucia,
-} from "../../auth"
+import { generateEmailVerificationCode, github, google, lucia } from "../auth"
 import type { db as database } from "@acme/db/client"
 import {
    emailVerificationCodes,
@@ -21,9 +16,9 @@ import {
    protectedProcedure,
    publicProcedure,
    publicRateLimitedProcedure,
-} from "../context"
+} from "../trpc"
 import { eq } from "@acme/db"
-import { env } from "../../env"
+import { env } from "../env"
 import { setCookie } from "hono/cookie"
 
 export const user = createTRPCRouter({

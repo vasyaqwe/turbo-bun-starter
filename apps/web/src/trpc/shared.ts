@@ -2,11 +2,9 @@ import { QueryClient } from "@tanstack/react-query"
 import { toast } from "@acme/ui/toast"
 import { env } from "@/env"
 
-export function getUrl() {
-   return env.VITE_SERVER_URL + "/trpc"
-}
+export const getUrl = () => env.VITE_SERVER_URL + "/trpc"
 
-export const createQueryClient = () =>
+const createQueryClient = () =>
    new QueryClient({
       defaultOptions: {
          mutations: {
@@ -16,3 +14,14 @@ export const createQueryClient = () =>
          },
       },
    })
+
+let clientQueryClientSingleton: QueryClient | undefined = undefined
+export const getQueryClient = () => {
+   if (typeof window === "undefined") {
+      // Server: always make a new query client
+      return createQueryClient()
+   } else {
+      // Browser: use singleton pattern to keep the same query client
+      return (clientQueryClientSingleton ??= createQueryClient())
+   }
+}

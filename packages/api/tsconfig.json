@@ -1,0 +1,17 @@
+{
+   "extends": "@acme/tsconfig/internal-package.json",
+   "compilerOptions": {
+      "jsx": "react",
+
+      //fix bug "The inferred type of this node exceeds the maximum length the compiler will serialize."
+      "declaration": false,
+      "emitDeclarationOnly": false,
+      "declarationMap": false,
+      "composite": false,
+
+      "outDir": "dist",
+      "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
+   },
+   "include": ["src"],
+   "exclude": ["node_modules"]
+}

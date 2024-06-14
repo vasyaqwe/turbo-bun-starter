@@ -2,9 +2,9 @@ import { trpcServer } from "@hono/trpc-server"
 import { Hono } from "hono"
 import { cors } from "hono/cors"
 import { showRoutes } from "hono/dev"
-import { appRouter, createTRPCContext } from "./trpc"
+import { appRouter, createTRPCContext } from "@acme/api"
 import { csrf } from "hono/csrf"
-import { getAuthSession } from "./auth"
+import { getAuthSession } from "@acme/api/auth"
 import { env } from "./env"
 
 const app = new Hono()
@@ -26,6 +26,7 @@ app.use(
    trpcServer({
       router: appRouter,
       createContext: async (_opts, ctx) => {
+         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
          return createTRPCContext({
             session: await getAuthSession(ctx),
             honoCtx: ctx,

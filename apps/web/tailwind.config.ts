@@ -11,7 +11,7 @@ export default {
    theme: {
       extend: {
          fontFamily: {
-            primary: ["var(--font-inter)", ...fontFamily.sans],
+            primary: ["Inter", ...fontFamily.sans],
          },
       },
    },

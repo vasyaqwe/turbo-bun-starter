@@ -1,5 +1,3 @@
-"use client"
-
 import { popModal } from "@/components/modals"
 import { Content } from "@/components/modals/dynamic"
 import { Button } from "@acme/ui/button"
@@ -13,11 +11,11 @@ import {
    SelectItem,
    SelectTrigger,
 } from "@acme/ui/select"
-import { expenseNames } from "@acme/db/schema/expenses"
+import { expenseNames } from "@acme/db/config"
 import { api } from "@/trpc/react"
 import { useState } from "react"
-import { toast } from "sonner"
 import { AnimatedButtonContent } from "@/components/animated-button-content"
+import { toast } from "@acme/ui/toast"
 
 export function CreateExpense() {
    const { mutate, isPending, isSuccess } = api.expense.insert.useMutation({
@@ -41,6 +39,7 @@ export function CreateExpense() {
          </DialogHeader>
          <form
             id="create-expense"
+            // @ts-expect-error ...
             action={(formData) => {
                mutate({
                   name: expenseName,

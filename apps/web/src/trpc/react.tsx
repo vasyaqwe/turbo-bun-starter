@@ -1,23 +1,9 @@
-"use client"
-
-import { useState } from "react"
-import { type QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { QueryClientProvider } from "@tanstack/react-query"
 import { loggerLink, httpBatchLink } from "@trpc/client"
-import { createTRPCReact } from "@trpc/react-query"
-import type { AppRouter } from "@acme/server/src/trpc/index"
-import { createQueryClient, getUrl } from "@/trpc/shared"
+import { createTRPCQueryUtils, createTRPCReact } from "@trpc/react-query"
+import type { AppRouter } from "@acme/api"
 import SuperJSON from "superjson"
-
-let clientQueryClientSingleton: QueryClient | undefined = undefined
-const getQueryClient = () => {
-   if (typeof window === "undefined") {
-      // Server: always make a new query client
-      return createQueryClient()
-   } else {
-      // Browser: use singleton pattern to keep the same query client
-      return (clientQueryClientSingleton ??= createQueryClient())
-   }
-}
+import { getQueryClient, getUrl } from "@/trpc/shared"
 
 export const api = createTRPCReact<AppRouter>({
    overrides: {
@@ -31,36 +17,39 @@ export const api = createTRPCReact<AppRouter>({
    },
 })
 
+const trpcClient = api.createClient({
+   links: [
+      loggerLink({
+         enabled: (op) =>
+            // eslint-disable-next-line no-restricted-properties
+            process.env.NODE_ENV === "development" ||
+            (op.direction === "down" && op.result instanceof Error),
+      }),
+      httpBatchLink({
+         transformer: SuperJSON,
+         url: getUrl(),
+         fetch(url, options) {
+            return fetch(url, {
+               ...options,
+               credentials: "include",
+            })
+         },
+         headers() {
+            const headers = new Headers()
+            headers.set("x-trpc-source", "vite-react")
+            return headers
+         },
+      }),
+   ],
+})
+
+export const clientUtils = createTRPCQueryUtils({
+   queryClient: getQueryClient(),
+   client: trpcClient,
+})
+
 export function TRPCReactProvider(props: { children: React.ReactNode }) {
    const queryClient = getQueryClient()
-
-   const [trpcClient] = useState(() =>
-      api.createClient({
-         links: [
-            loggerLink({
-               enabled: (op) =>
-                  // eslint-disable-next-line no-restricted-properties
-                  process.env.NODE_ENV === "development" ||
-                  (op.direction === "down" && op.result instanceof Error),
-            }),
-            httpBatchLink({
-               transformer: SuperJSON,
-               url: getUrl(),
-               fetch(url, options) {
-                  return fetch(url, {
-                     ...options,
-                     credentials: "include",
-                  })
-               },
-               headers() {
-                  const headers = new Headers()
-                  headers.set("x-trpc-source", "vite-react")
-                  return headers
-               },
-            }),
-         ],
-      })
-   )
 
    return (
       <api.Provider

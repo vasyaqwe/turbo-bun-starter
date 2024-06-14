@@ -1,5 +1,3 @@
-"use client"
-
 import { pushModal } from "@/components/modals"
 import { Button } from "@acme/ui/button"
 import { PlusIcon } from "@heroicons/react/24/outline"

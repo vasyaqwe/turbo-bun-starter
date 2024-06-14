@@ -1,6 +1,6 @@
 import { expenses, insertExpenseParams } from "@acme/db/schema/expenses"
 import { eq } from "@acme/db"
-import { createTRPCRouter, protectedProcedure } from "../context"
+import { createTRPCRouter, protectedProcedure } from "../trpc"
 
 export const expense = createTRPCRouter({
    list: protectedProcedure.query(async ({ ctx }) => {

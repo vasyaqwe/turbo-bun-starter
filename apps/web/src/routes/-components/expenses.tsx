@@ -1,5 +1,3 @@
-"use client"
-
 import { Badge } from "@acme/ui/badge"
 import { TableCell, TableRow } from "@acme/ui/table"
 import { expenseNamesColors } from "@acme/db/schema/expenses"

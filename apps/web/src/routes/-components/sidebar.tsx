@@ -1,7 +1,5 @@
-"use client"
-
 import { buttonVariants } from "@acme/ui/button"
-import { UserAvatar } from "@acme/ui/user-avatar"
+import { UserAvatar } from "@/components/ui/user-avatar"
 import { api } from "@/trpc/react"
 import { InboxStackIcon, RectangleGroupIcon } from "@heroicons/react/24/outline"
 import { cn } from "@acme/ui"
@@ -32,7 +30,7 @@ export function Sidebar() {
                         className: cn(buttonVariants(), "bg-transparent"),
                      }}
                      className={
-                        "w-full justify-start text-foreground backdrop-blur-md transition-all hover:bg-popover hover:shadow-shadow aria-[current=page]:hover:before:from-foreground/[0.015]"
+                        "w-full !justify-start text-foreground backdrop-blur-md transition-all hover:bg-popover hover:shadow-shadow aria-[current=page]:hover:before:from-foreground/[0.015]"
                      }
                      to={"/"}
                   >
@@ -49,9 +47,9 @@ export function Sidebar() {
                         className: cn(buttonVariants(), "bg-transparent"),
                      }}
                      className={
-                        "w-full justify-start text-foreground backdrop-blur-md transition-all hover:bg-popover hover:shadow-shadow aria-[current=page]:hover:before:from-foreground/[0.015]"
+                        "w-full !justify-start text-foreground backdrop-blur-md transition-all hover:bg-popover hover:shadow-shadow aria-[current=page]:hover:before:from-foreground/[0.015]"
                      }
-                     to={"/whatever"}
+                     to={"/"}
                   >
                      <InboxStackIcon className="size-5" />
                      Whatevers

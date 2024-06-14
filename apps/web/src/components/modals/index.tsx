@@ -1,8 +1,6 @@
-"use client"
-
 import { createPushModal } from "pushmodal"
 import { Wrapper } from "./dynamic"
-import { CreateExpense } from "@/routes/(root)/-components/create-expense"
+import { CreateExpense } from "@/routes/-components/create-expense"
 
 export const {
    pushModal,

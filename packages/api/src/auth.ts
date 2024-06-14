@@ -10,7 +10,7 @@ import {
    type User,
    users,
 } from "@acme/db/schema/users"
-import { env } from "../env"
+import { env } from "./env"
 import { getCookie } from "hono/cookie"
 import type { Context } from "hono"
 import { eq } from "@acme/db"

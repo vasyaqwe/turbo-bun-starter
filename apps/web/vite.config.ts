@@ -8,7 +8,13 @@ import eslint from "vite-plugin-eslint"
 export default defineConfig(() => {
    return {
       optimizeDeps: {
-         include: ["@acme/ui", "@acme/server", "@acme/db", "@acme/emails"],
+         include: [
+            "@acme/ui",
+            "@acme/server",
+            "@acme/db",
+            "@acme/emails",
+            "@acme/api",
+         ],
       },
       plugins: [eslint(), react(), TanStackRouterVite(), tsconfigPaths()],
    }
