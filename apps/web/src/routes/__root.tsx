@@ -1,5 +1,6 @@
 import { Outlet, createRootRoute, Link } from "@tanstack/react-router"
 import { buttonVariants } from "@acme/ui/button"
+import { Toaster } from "@acme/ui/toast"
 
 export const Route = createRootRoute({
    component: RootComponent,
@@ -18,5 +19,10 @@ function NotFound() {
 }
 
 function RootComponent() {
-   return <Outlet />
+   return (
+      <>
+         <Outlet />
+         <Toaster />
+      </>
+   )
 }

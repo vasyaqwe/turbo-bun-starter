@@ -10,7 +10,6 @@ import {
    type User,
    users,
 } from "@acme/db/schema/users"
-
 import { env } from "../env"
 import { getCookie } from "hono/cookie"
 import type { Context } from "hono"
@@ -20,7 +19,7 @@ export const github = new GitHub(env.GITHUB_CLIENT_ID, env.GITHUB_CLIENT_SECRET)
 export const google = new Google(
    env.GOOGLE_CLIENT_ID,
    env.GOOGLE_CLIENT_SECRET,
-   env.PUBLIC_BASE_URL + "/login/google/callback"
+   env.VITE_BASE_URL + "/login/google/callback"
 )
 
 export const initLucia = () => {

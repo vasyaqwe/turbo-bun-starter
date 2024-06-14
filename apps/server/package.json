@@ -13,7 +13,6 @@
     "@acme/db": "workspace:*",
     "@acme/emails": "workspace:*",
     "@hono/trpc-server": "^0.3.1",
-    "@js-temporal/polyfill": "^0.4.4",
     "@lucia-auth/adapter-drizzle": "^1.0.7",
     "@t3-oss/env-core": "^0.10.1",
     "@trpc/server": "11.0.0-rc.403",

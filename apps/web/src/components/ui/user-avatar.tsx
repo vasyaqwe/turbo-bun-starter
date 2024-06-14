@@ -1,10 +1,7 @@
-"use client"
-
-import { Avatar, AvatarFallback } from "./avatar"
-import Image from "next/image"
+import { Avatar, AvatarFallback } from "@acme/ui/avatar"
 import { type AvatarProps } from "@radix-ui/react-avatar"
-import { cn } from "."
 import { type User } from "@acme/db/schema/users"
+import { cn } from "@acme/ui"
 
 type UserAvatarProps = AvatarProps & {
    user: Partial<User>
@@ -12,12 +9,7 @@ type UserAvatarProps = AvatarProps & {
    size?: number
 }
 
-export function UserAvatar({
-   user,
-   className,
-   size = 60,
-   ...props
-}: UserAvatarProps) {
+export function UserAvatar({ user, className, ...props }: UserAvatarProps) {
    return (
       <Avatar
          {...props}
@@ -28,9 +20,7 @@ export function UserAvatar({
          )}
       >
          {user.avatarUrl ? (
-            <Image
-               width={size}
-               height={size}
+            <img
                src={user.avatarUrl}
                alt={`${user.firstName}'s avatar`}
                referrerPolicy="no-referrer"
