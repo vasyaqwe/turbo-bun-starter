@@ -199,9 +199,9 @@ importers:
 
   apps/web:
     dependencies:
-      '@acme/server':
+      '@acme/db':
         specifier: workspace:*
-        version: link:../server
+        version: link:../../packages/db
       '@acme/ui':
         specifier: workspace:*
         version: link:../../packages/ui
