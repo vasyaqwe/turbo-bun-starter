@@ -1,0 +1,10 @@
+{
+   "watch": [
+      "../../packages/api",
+      "../../packages/db",
+      "../../packages/emails",
+      "."
+   ],
+   "ext": "js,ts,json",
+   "exec": "bun run --env-file=../../.env --hot src/index.ts"
+}

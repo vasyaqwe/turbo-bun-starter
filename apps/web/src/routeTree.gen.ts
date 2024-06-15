@@ -15,6 +15,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as LayoutIndexImport } from './routes/_layout/index'
+import { Route as LayoutWhateverImport } from './routes/_layout/whatever'
 import { Route as authLayoutImport } from './routes/(auth)/_layout'
 import { Route as authLayoutLoginImport } from './routes/(auth)/_layout/login'
 
@@ -36,6 +37,11 @@ const LayoutRoute = LayoutImport.update({
 
 const LayoutIndexRoute = LayoutIndexImport.update({
   path: '/',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutWhateverRoute = LayoutWhateverImport.update({
+  path: '/whatever',
   getParentRoute: () => LayoutRoute,
 } as any)
 
@@ -74,6 +80,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authLayoutImport
       parentRoute: typeof authRoute
     }
+    '/_layout/whatever': {
+      id: '/_layout/whatever'
+      path: '/whatever'
+      fullPath: '/whatever'
+      preLoaderRoute: typeof LayoutWhateverImport
+      parentRoute: typeof LayoutImport
+    }
     '/_layout/': {
       id: '/_layout/'
       path: '/'
@@ -94,7 +107,10 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren({
-  LayoutRoute: LayoutRoute.addChildren({ LayoutIndexRoute }),
+  LayoutRoute: LayoutRoute.addChildren({
+    LayoutWhateverRoute,
+    LayoutIndexRoute,
+  }),
   authRoute: authRoute.addChildren({
     authLayoutRoute: authLayoutRoute.addChildren({ authLayoutLoginRoute }),
   }),
@@ -124,6 +140,10 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/_layout"
       ]
+    },
+    "/_layout/whatever": {
+      "filePath": "_layout/whatever.tsx",
+      "parent": "/_layout"
     },
     "/_layout/": {
       "filePath": "_layout/index.tsx",

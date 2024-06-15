@@ -38,14 +38,16 @@ export function CreateExpense() {
             <DialogTitle>Create Expense</DialogTitle>
          </DialogHeader>
          <form
-            id="create-expense"
-            // @ts-expect-error ...
-            action={(formData) => {
+            onSubmit={(e) => {
+               e.preventDefault()
+               const formData = new FormData(e.target as HTMLFormElement)
+
                mutate({
                   name: expenseName,
                   amount: +(formData.get("amount") ?? 0),
                })
             }}
+            id="create-expense"
          >
             <Label htmlFor="name">Amount</Label>
             <Input

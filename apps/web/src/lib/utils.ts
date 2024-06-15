@@ -12,7 +12,7 @@ export function formatDate(
 }
 
 export function formatCurrency(
-   price: number | string,
+   price: number,
    options: Intl.NumberFormatOptions = {}
 ) {
    return new Intl.NumberFormat("en-US", {

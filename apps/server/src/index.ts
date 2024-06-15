@@ -26,7 +26,6 @@ app.use(
    trpcServer({
       router: appRouter,
       createContext: async (_opts, ctx) => {
-         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
          return createTRPCContext({
             session: await getAuthSession(ctx),
             honoCtx: ctx,
@@ -38,13 +37,13 @@ app.use(
    })
 )
 
-const isDev = env.NODE_ENV === "production"
-const port = !isDev ? 3001 : 3000
+const isProd = env.NODE_ENV === "production"
+const port = !isProd ? 3001 : 3000
 
-if (!isDev) showRoutes(app, { verbose: true, colorize: true })
+if (!isProd) showRoutes(app, { verbose: true, colorize: true })
 
 console.log(`Starting server on port ${port}`)
 
-const server = { port, fetch: app.fetch }
+const server = { port, fetch: app.fetch, keepalive: true }
 
 export default server

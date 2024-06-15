@@ -9,13 +9,13 @@ const buttonVariants = cva(
          variant: {
             default: `bg-primary text-background`,
             accent: `bg-accent text-accent-foreground hover:bg-accent/80`,
-            outline: `bg-popover shadow-shadow before:from-foreground/[0.015]`,
+            outline: `bg-popover shadow-shadow before:from-foreground/[0.02]`,
             link: "!h-auto !rounded-none !p-0 underline before:hidden hover:no-underline",
          },
          size: {
             default: "h-[35px] rounded-md px-3 before:rounded-md",
             sm: "h-8 rounded-sm px-2.5 text-sm",
-            lg: "h-9 px-8",
+            lg: "h-9 px-3",
             icon: "size-8 gap-0 rounded-md",
          },
       },

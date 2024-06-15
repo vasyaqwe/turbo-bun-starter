@@ -202,8 +202,10 @@ function Page() {
                      </p>
                      <form
                         className="!mt-5 space-y-3"
-                        // @ts-expect-error ...
-                        action={() => sendLoginCode({ email })}
+                        onSubmit={(e) => {
+                           e.preventDefault()
+                           sendLoginCode({ email })
+                        }}
                      >
                         <Input
                            disabled={isPending || isSuccess}

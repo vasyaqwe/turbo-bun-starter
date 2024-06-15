@@ -11,7 +11,7 @@ export const expense = createTRPCRouter({
 
       return res
    }),
-   getAll2: protectedProcedure.query(async ({ ctx }) => {
+   list2: protectedProcedure.query(async ({ ctx }) => {
       const res = await ctx.db
          .select()
          .from(expenses)

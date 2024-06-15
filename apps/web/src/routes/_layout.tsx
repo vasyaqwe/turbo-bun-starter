@@ -5,9 +5,7 @@ import { Outlet, createFileRoute, redirect } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/_layout")({
    beforeLoad: async () => {
-      try {
-         await clientUtils.user.me.ensureData()
-      } catch (error) {
+      await clientUtils.user.me.ensureData().catch(() => {
          throw redirect({
             to: "/login",
             search: {
@@ -17,7 +15,7 @@ export const Route = createFileRoute("/_layout")({
                redirect: location.href,
             },
          })
-      }
+      })
    },
    component: () => (
       <>

@@ -6,7 +6,9 @@ import { cn } from "@acme/ui"
 import { Link } from "@tanstack/react-router"
 
 export function Sidebar() {
-   const [user] = api.user.me.useSuspenseQuery()
+   const [user] = api.user.me.useSuspenseQuery(undefined, {
+      staleTime: Infinity,
+   })
 
    return (
       <aside className="w-72 p-6 max-md:hidden">
@@ -24,13 +26,16 @@ export function Sidebar() {
                <li>
                   <Link
                      activeProps={{
-                        className: buttonVariants({ variant: "outline" }),
+                        className: cn(
+                           buttonVariants({ variant: "outline" }),
+                           "shadow-[0px_0px_0px_1px_rgba(9,_9,_11,_.06),0px_2px_2px_0px_rgba(9,_9,_11,_.08)]"
+                        ),
                      }}
                      inactiveProps={{
                         className: cn(buttonVariants(), "bg-transparent"),
                      }}
                      className={
-                        "w-full !justify-start text-foreground backdrop-blur-md transition-all hover:bg-popover hover:shadow-shadow aria-[current=page]:hover:before:from-foreground/[0.015]"
+                        "w-full !justify-start text-foreground backdrop-blur-md !transition-all hover:bg-popover hover:shadow-[0px_0px_0px_1px_rgba(9,_9,_11,_.06),0px_2px_2px_0px_rgba(9,_9,_11,_.08)] aria-[current=page]:hover:before:from-foreground/[0.015]"
                      }
                      to={"/"}
                   >
@@ -41,15 +46,18 @@ export function Sidebar() {
                <li>
                   <Link
                      activeProps={{
-                        className: buttonVariants({ variant: "outline" }),
+                        className: cn(
+                           buttonVariants({ variant: "outline" }),
+                           "shadow-[0px_0px_0px_1px_rgba(9,_9,_11,_.06),0px_2px_2px_0px_rgba(9,_9,_11,_.08)]"
+                        ),
                      }}
                      inactiveProps={{
                         className: cn(buttonVariants(), "bg-transparent"),
                      }}
                      className={
-                        "w-full !justify-start text-foreground backdrop-blur-md transition-all hover:bg-popover hover:shadow-shadow aria-[current=page]:hover:before:from-foreground/[0.015]"
+                        "w-full !justify-start text-foreground backdrop-blur-md !transition-all hover:bg-popover hover:shadow-[0px_0px_0px_1px_rgba(9,_9,_11,_.06),0px_2px_2px_0px_rgba(9,_9,_11,_.08)] aria-[current=page]:hover:before:from-foreground/[0.015]"
                      }
-                     to={"/"}
+                     to={"/whatever"}
                   >
                      <InboxStackIcon className="size-5" />
                      Whatevers
