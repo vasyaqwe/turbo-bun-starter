@@ -8,11 +8,9 @@ COPY . .
 # To keep the image small ;)
 RUN rm -rf /app/apps/mobile
 RUN rm -rf /app/apps/web
-RUN rm -rf /app/packages/db
-RUN rm -rf /app/packages/emails
 RUN rm -rf /app/packages/ui
 
-RUN bun install --ignore-scripts
+RUN rm -f bun.lockb && bun install --ignore-scripts
 
 EXPOSE 3000
 
