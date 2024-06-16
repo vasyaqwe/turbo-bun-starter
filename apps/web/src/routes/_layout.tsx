@@ -8,6 +8,7 @@ export const Route = createFileRoute("/_layout")({
       await clientUtils.user.me
          .ensureData(undefined, {
             retry: false,
+            staleTime: Infinity,
          })
          .catch(() => {
             throw redirect({

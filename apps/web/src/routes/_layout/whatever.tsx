@@ -1,7 +1,7 @@
 import { formatCurrency } from "@/lib/utils"
 import { Intro } from "@/routes/-components/intro"
 import { api } from "@/trpc/react"
-import { expenseNamesColors } from "@acme/db/config"
+import { expenseNamesColors } from "@/config"
 import { Badge } from "@acme/ui/badge"
 import { Card } from "@acme/ui/card"
 import { Skeleton } from "@acme/ui/skeleton"

@@ -12,7 +12,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import { Loading } from "@acme/ui/loading"
 import { useTimer } from "@/hooks/use-timer"
-import { toast } from "sonner"
+import { toast } from "@acme/ui/toast"
 import { api } from "@/trpc/react"
 import { AnimatedButtonContent } from "@/components/animated-button-content"
 import { cn } from "@acme/ui"
@@ -110,7 +110,7 @@ function Page() {
                            onComplete={(code) => {
                               if (!userId)
                                  return toast.error(
-                                    "An error occurred, try again later"
+                                    "An error occurred, try again later",
                                  )
 
                               if (verifyCodePending) return

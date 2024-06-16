@@ -11,11 +11,11 @@ import {
    SelectItem,
    SelectTrigger,
 } from "@acme/ui/select"
-import { expenseNames } from "@acme/db/config"
 import { api } from "@/trpc/react"
 import { useState } from "react"
 import { AnimatedButtonContent } from "@/components/animated-button-content"
 import { toast } from "@acme/ui/toast"
+import { expenseNames } from "@/config"
 
 export function CreateExpense() {
    const { mutate, isPending, isSuccess } = api.expense.insert.useMutation({
