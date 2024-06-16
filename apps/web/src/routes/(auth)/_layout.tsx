@@ -1,3 +1,4 @@
+import { DottedBg } from "@acme/ui/dotted-bg"
 import { Link, Outlet, createFileRoute } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/(auth)/_layout")({
@@ -12,6 +13,7 @@ export const Route = createFileRoute("/(auth)/_layout")({
             </Link>
          </header>
          <main>
+            <DottedBg />
             <Outlet />
          </main>
       </>

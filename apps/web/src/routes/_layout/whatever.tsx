@@ -1,6 +1,7 @@
 import { formatCurrency } from "@/lib/utils"
 import { Intro } from "@/routes/-components/intro"
 import { api } from "@/trpc/react"
+import { expenseNamesColors } from "@acme/db/config"
 import { Badge } from "@acme/ui/badge"
 import { Card } from "@acme/ui/card"
 import { Skeleton } from "@acme/ui/skeleton"
@@ -64,7 +65,16 @@ function Page() {
                                 key={expense.id}
                              >
                                 <TableCell className="capitalize">
-                                   <Badge>{expense.name}</Badge>
+                                   <Badge
+                                      style={
+                                         {
+                                            "--primary":
+                                               expenseNamesColors[expense.name],
+                                         } as never
+                                      }
+                                   >
+                                      {expense.name}
+                                   </Badge>
                                 </TableCell>
                                 <TableCell className="text-right">
                                    {formatCurrency(expense.amount)}

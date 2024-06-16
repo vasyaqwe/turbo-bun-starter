@@ -24,6 +24,11 @@
     "typecheck": "turbo typecheck",
     "ui-add": "pnpm -F ui ui-add"
   },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tooling/*"
+  ],
   "devDependencies": {
     "@acme/prettier-config": "workspace:*",
     "@turbo/gen": "^2.0.3",

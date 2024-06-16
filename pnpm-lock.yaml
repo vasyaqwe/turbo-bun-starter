@@ -141,42 +141,18 @@ importers:
       '@acme/api':
         specifier: workspace:*
         version: link:../../packages/api
-      '@acme/db':
-        specifier: workspace:*
-        version: link:../../packages/db
-      '@acme/emails':
-        specifier: workspace:*
-        version: link:../../packages/emails
       '@hono/trpc-server':
         specifier: ^0.3.1
         version: 0.3.1(@trpc/server@11.0.0-rc.403)(hono@4.4.5)
-      '@lucia-auth/adapter-drizzle':
-        specifier: ^1.0.7
-        version: 1.0.7(lucia@3.2.0)
       '@t3-oss/env-core':
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.4.5)(zod@3.23.8)
       '@trpc/server':
         specifier: 11.0.0-rc.403
         version: 11.0.0-rc.403
-      '@unkey/ratelimit':
-        specifier: ^0.1.10
-        version: 0.1.10
-      arctic:
-        specifier: ^1.9.1
-        version: 1.9.1
       hono:
         specifier: 4.4.5
         version: 4.4.5
-      lucia:
-        specifier: ^3.2.0
-        version: 3.2.0
-      oslo:
-        specifier: ^1.2.0
-        version: 1.2.0
-      superjson:
-        specifier: 2.2.1
-        version: 2.2.1
       zod:
         specifier: ^3.23.8
         version: 3.23.8
