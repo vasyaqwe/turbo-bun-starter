@@ -1,4 +1,4 @@
-import { type ExpenseName } from "@acme/db/schema/expenses"
+import type { ExpenseName } from "@acme/db/schema/expenses"
 
 export const expenseNames = [
    "rent",

@@ -1,6 +1,6 @@
-import useResizeObserver from "use-resize-observer"
-import { AnimatePresence, motion } from "framer-motion"
 import { Loading } from "@acme/ui/loading"
+import { AnimatePresence, motion } from "framer-motion"
+import useResizeObserver from "use-resize-observer"
 
 export function AnimatedButtonContent({
    isPending,

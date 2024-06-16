@@ -1,7 +1,3 @@
-import { formatCurrency } from "@/lib/utils"
-import { Intro } from "@/routes/-components/intro"
-import { api } from "@/trpc/react"
-import { expenseNamesColors } from "@/config"
 import { Badge } from "@acme/ui/badge"
 import { Card } from "@acme/ui/card"
 import { Skeleton } from "@acme/ui/skeleton"
@@ -15,6 +11,10 @@ import {
 } from "@acme/ui/table"
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline"
 import { createFileRoute } from "@tanstack/react-router"
+import { expenseNamesColors } from "@/config"
+import { formatCurrency } from "@/lib/utils"
+import { Intro } from "@/routes/-components/intro"
+import { api } from "@/trpc/react"
 
 export const Route = createFileRoute("/_layout/whatever")({
    component: Page,

@@ -1,8 +1,5 @@
-import { TRPCError } from "@trpc/server"
-import { generateCodeVerifier, generateState } from "arctic"
-import { isWithinExpirationDate } from "oslo"
-import { generateEmailVerificationCode, github, google, lucia } from "../auth"
 import type { db as database } from "@acme/db/client"
+import { eq } from "@acme/db"
 import {
    emailVerificationCodes,
    insertUserParams,
@@ -11,15 +8,18 @@ import {
 } from "@acme/db/schema/users"
 import { EMAIL_FROM } from "@acme/emails"
 import { VerificationCodeEmail } from "@acme/emails/emails/verification-code-email"
+import { TRPCError } from "@trpc/server"
+import { generateCodeVerifier, generateState } from "arctic"
+import { setCookie } from "hono/cookie"
+import { isWithinExpirationDate } from "oslo"
+import { generateEmailVerificationCode, github, google, lucia } from "../auth"
+import { env } from "../env"
 import {
    createTRPCRouter,
    protectedProcedure,
    publicProcedure,
    publicRateLimitedProcedure,
 } from "../trpc"
-import { eq } from "@acme/db"
-import { env } from "../env"
-import { setCookie } from "hono/cookie"
 
 export const user = createTRPCRouter({
    me: protectedProcedure.query(({ ctx }) => ctx.session.user),

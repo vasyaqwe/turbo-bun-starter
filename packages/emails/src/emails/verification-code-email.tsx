@@ -7,7 +7,6 @@ import {
    Section,
    Text,
 } from "@react-email/components"
-
 import { EmailBody } from "../emails/shared"
 import { withBaseUrl } from "../utils"
 

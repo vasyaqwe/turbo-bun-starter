@@ -1,5 +1,5 @@
-import { cn } from "."
 import { type ComponentProps } from "react"
+import { cn } from "."
 
 export function DottedBg({ className, ...props }: ComponentProps<"div">) {
    return (

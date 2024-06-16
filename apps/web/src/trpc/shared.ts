@@ -1,5 +1,5 @@
-import { QueryClient } from "@tanstack/react-query"
 import { toast } from "@acme/ui/toast"
+import { QueryClient } from "@tanstack/react-query"
 import { env } from "@/env"
 
 export const getUrl = () => env.VITE_SERVER_URL + "/trpc"

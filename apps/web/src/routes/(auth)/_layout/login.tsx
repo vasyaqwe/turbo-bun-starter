@@ -1,21 +1,21 @@
-import { Link, createFileRoute, useNavigate } from "@tanstack/react-router"
-import { Input } from "@acme/ui/input"
+import { useEffect, useState } from "react"
+import { cn } from "@acme/ui"
 import { Button, buttonVariants } from "@acme/ui/button"
+import { Card } from "@acme/ui/card"
+import { Input } from "@acme/ui/input"
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@acme/ui/input-otp"
+import { Loading } from "@acme/ui/loading"
+import { toast } from "@acme/ui/toast"
 import {
    ArrowRightCircleIcon,
    CheckCircleIcon,
    XCircleIcon,
 } from "@heroicons/react/24/outline"
-import { Card } from "@acme/ui/card"
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@acme/ui/input-otp"
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router"
 import { AnimatePresence, motion } from "framer-motion"
-import { useEffect, useState } from "react"
-import { Loading } from "@acme/ui/loading"
-import { useTimer } from "@/hooks/use-timer"
-import { toast } from "@acme/ui/toast"
-import { api } from "@/trpc/react"
 import { AnimatedButtonContent } from "@/components/animated-button-content"
-import { cn } from "@acme/ui"
+import { useTimer } from "@/hooks/use-timer"
+import { api } from "@/trpc/react"
 
 export const Route = createFileRoute("/(auth)/_layout/login")({
    component: Page,

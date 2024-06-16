@@ -1,5 +1,5 @@
+import { forwardRef,type InputHTMLAttributes } from "react"
 import { cva } from "class-variance-authority"
-import { type InputHTMLAttributes, forwardRef } from "react"
 import { cn } from "."
 
 const inputVariants = cva(

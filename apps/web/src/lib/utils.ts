@@ -4,7 +4,7 @@ export function formatDate(
       month: "long",
       day: "numeric",
       year: "numeric",
-   }
+   },
 ) {
    return new Intl.DateTimeFormat("en-US", {
       ...options,
@@ -13,7 +13,7 @@ export function formatDate(
 
 export function formatCurrency(
    price: number,
-   options: Intl.NumberFormatOptions = {}
+   options: Intl.NumberFormatOptions = {},
 ) {
    return new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -36,7 +36,7 @@ export const delay = async <T>(promise: Promise<T>, ms: number) => {
 
 export const action = <T, R>(
    apiMethod: (input: T) => Promise<R>,
-   more?: (result: R) => void
+   more?: (result: R) => void,
 ) => {
    return async (input: T) => {
       const result = await apiMethod(input)

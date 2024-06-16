@@ -1,18 +1,18 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import {
-   Link,
-   RouterProvider,
-   createRouter,
-   useRouter,
-} from "@tanstack/react-router"
-import { routeTree } from "./routeTree.gen"
 import "./globals.css"
-import { TRPCReactProvider } from "@/trpc/react"
-import { getQueryClient } from "@/trpc/shared"
 import { Button, buttonVariants } from "@acme/ui/button"
 import { DottedBg } from "@acme/ui/dotted-bg"
 import { XCircleIcon } from "@heroicons/react/24/outline"
+import {
+   createRouter,
+   Link,
+   RouterProvider,
+   useRouter,
+} from "@tanstack/react-router"
+import { TRPCReactProvider } from "@/trpc/react"
+import { getQueryClient } from "@/trpc/shared"
+import { routeTree } from "./routeTree.gen"
 
 const router = createRouter({
    routeTree,

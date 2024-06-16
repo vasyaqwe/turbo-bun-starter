@@ -3,6 +3,7 @@
 import eslint from "@eslint/js"
 import drizzlePlugin from "eslint-plugin-drizzle"
 import importPlugin from "eslint-plugin-import"
+import sortPlugin from "eslint-plugin-simple-import-sort"
 import tseslint from "typescript-eslint"
 
 /**
@@ -41,6 +42,7 @@ export default tseslint.config(
       files: ["**/*.js", "**/*.ts", "**/*.tsx"],
       plugins: {
          import: importPlugin,
+         "simple-import-sort": sortPlugin,
          drizzle: drizzlePlugin,
       },
       extends: [
@@ -50,6 +52,36 @@ export default tseslint.config(
          ...tseslint.configs.stylisticTypeChecked,
       ],
       rules: {
+         "simple-import-sort/imports": [
+            "error",
+            {
+               groups: [
+                  [
+                     // React first.
+                     "^react",
+                     // Type imports.
+                     "^node:.*\\u0000$",
+                     "^@?\\w.*\\u0000$",
+                     "^[^.].*\\u0000$",
+                     "^\\..*\\u0000$",
+                     // Side effect imports.
+                     "^\\u0000",
+                     // Node.js builtins prefixed with `node:`.
+                     "^node:",
+                     // Packages.
+                     "^@?\\w",
+                     // Absolute imports and other imports such as Vue-style `@/foo`.
+                     "^",
+                     // Relative imports.
+                     "^\\.",
+                  ],
+               ],
+            },
+         ],
+         "simple-import-sort/exports": "error",
+         "import/first": "error",
+         // "import/newline-after-import": "error",
+         "import/no-duplicates": "error",
          "@typescript-eslint/array-type": "off",
          "@typescript-eslint/consistent-type-definitions": "off",
          "@typescript-eslint/no-unused-vars": [
@@ -95,5 +127,5 @@ export default tseslint.config(
    {
       linterOptions: { reportUnusedDisableDirectives: true },
       languageOptions: { parserOptions: { project: true } },
-   }
+   },
 )

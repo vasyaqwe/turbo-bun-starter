@@ -8,7 +8,6 @@ import {
 } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 import { z } from "zod"
-
 import { createTable, id, lifecycleDates } from "../utils"
 
 export const users = createTable(

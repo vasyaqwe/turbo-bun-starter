@@ -1,7 +1,7 @@
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
 import { ModalProvider } from "@/components/modals"
 import { Sidebar } from "@/routes/-components/sidebar"
 import { clientUtils } from "@/trpc/react"
-import { Outlet, createFileRoute, redirect } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/_layout")({
    beforeLoad: async () => {

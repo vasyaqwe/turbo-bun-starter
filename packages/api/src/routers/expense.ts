@@ -1,5 +1,5 @@
-import { expenses, insertExpenseParams } from "@acme/db/schema/expenses"
 import { eq } from "@acme/db"
+import { expenses, insertExpenseParams } from "@acme/db/schema/expenses"
 import { createTRPCRouter, protectedProcedure } from "../trpc"
 
 export const expense = createTRPCRouter({

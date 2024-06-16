@@ -1,6 +1,6 @@
 import { createPushModal } from "pushmodal"
-import { Wrapper } from "./dynamic"
 import { CreateExpense } from "@/routes/-components/create-expense"
+import { Wrapper } from "./dynamic"
 
 export const {
    pushModal,

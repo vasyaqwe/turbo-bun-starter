@@ -32,4 +32,4 @@ function EmailBody({ children }: { children: React.ReactNode }) {
       </Tailwind>
    )
 }
-export { EmailButton, EmailBody }
+export { EmailBody,EmailButton }

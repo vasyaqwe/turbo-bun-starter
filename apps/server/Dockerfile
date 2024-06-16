@@ -6,11 +6,9 @@ WORKDIR /app
 COPY . .
 
 # To keep the image small ;)
-RUN rm -rf /app/apps/mobile
-RUN rm -rf /app/apps/web
-RUN rm -rf /app/packages/ui
+RUN rm -rf /app/apps/mobile /app/apps/web /app/packages/ui /app/packages/emails /app/tooling/tailwind /app/tooling/github
 
-RUN rm -f bun.lockb && bun install --ignore-scripts
+RUN bun install --ignore-scripts
 
 EXPOSE 3000
 

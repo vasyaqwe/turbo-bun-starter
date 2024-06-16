@@ -1,9 +1,9 @@
+import { cn } from "@acme/ui"
 import { buttonVariants } from "@acme/ui/button"
+import { InboxStackIcon, RectangleGroupIcon } from "@heroicons/react/24/outline"
+import { Link } from "@tanstack/react-router"
 import { UserAvatar } from "@/components/ui/user-avatar"
 import { api } from "@/trpc/react"
-import { InboxStackIcon, RectangleGroupIcon } from "@heroicons/react/24/outline"
-import { cn } from "@acme/ui"
-import { Link } from "@tanstack/react-router"
 
 export function Sidebar() {
    const [user] = api.user.me.useSuspenseQuery(undefined, {
@@ -29,7 +29,7 @@ export function Sidebar() {
                      activeProps={{
                         className: cn(
                            buttonVariants({ variant: "outline" }),
-                           "shadow-[0px_0px_0px_1px_rgba(9,_9,_11,_.06),0px_2px_2px_0px_rgba(9,_9,_11,_.08)]"
+                           "shadow-[0px_0px_0px_1px_rgba(9,_9,_11,_.06),0px_2px_2px_0px_rgba(9,_9,_11,_.08)]",
                         ),
                      }}
                      inactiveProps={{
@@ -49,7 +49,7 @@ export function Sidebar() {
                      activeProps={{
                         className: cn(
                            buttonVariants({ variant: "outline" }),
-                           "shadow-[0px_0px_0px_1px_rgba(9,_9,_11,_.06),0px_2px_2px_0px_rgba(9,_9,_11,_.08)]"
+                           "shadow-[0px_0px_0px_1px_rgba(9,_9,_11,_.06),0px_2px_2px_0px_rgba(9,_9,_11,_.08)]",
                         ),
                      }}
                      inactiveProps={{

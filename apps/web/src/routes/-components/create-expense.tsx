@@ -1,5 +1,4 @@
-import { popModal } from "@/components/modals"
-import { Content } from "@/components/modals/dynamic"
+import { useState } from "react"
 import { Button } from "@acme/ui/button"
 import { DialogFooter, DialogHeader, DialogTitle } from "@acme/ui/dialog"
 import { Input } from "@acme/ui/input"
@@ -11,11 +10,12 @@ import {
    SelectItem,
    SelectTrigger,
 } from "@acme/ui/select"
-import { api } from "@/trpc/react"
-import { useState } from "react"
-import { AnimatedButtonContent } from "@/components/animated-button-content"
 import { toast } from "@acme/ui/toast"
+import { AnimatedButtonContent } from "@/components/animated-button-content"
+import { popModal } from "@/components/modals"
+import { Content } from "@/components/modals/dynamic"
 import { expenseNames } from "@/config"
+import { api } from "@/trpc/react"
 
 export function CreateExpense() {
    const { mutate, isPending, isSuccess } = api.expense.insert.useMutation({

@@ -1,10 +1,9 @@
 "use client"
 
 import * as React from "react"
-import * as DialogPrimitive from "@radix-ui/react-dialog"
-
-import { cn } from "."
 import { XMarkIcon } from "@heroicons/react/24/outline"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { cn } from "."
 
 const Dialog = DialogPrimitive.Root
 
@@ -107,13 +106,13 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName
 
 export {
    Dialog,
-   DialogPortal,
-   DialogOverlay,
    DialogClose,
-   DialogTrigger,
    DialogContent,
-   DialogHeader,
-   DialogFooter,
-   DialogTitle,
    DialogDescription,
+   DialogFooter,
+   DialogHeader,
+   DialogOverlay,
+   DialogPortal,
+   DialogTitle,
+   DialogTrigger,
 }

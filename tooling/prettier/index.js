@@ -5,14 +5,17 @@ import { fileURLToPath } from "url"
 
 /** @type { PrettierConfig | TailwindConfig } */
 const config = {
-   plugins: ["prettier-plugin-tailwindcss"],
+   plugins: [
+      "prettier-plugin-tailwindcss",
+      // "prettier-plugin-organize-imports"
+   ],
    trailingComma: "all",
    arrowParens: "always",
    tabWidth: 3,
    semi: false,
    singleAttributePerLine: true,
    tailwindConfig: fileURLToPath(
-      new URL("../../tooling/tailwind/web.ts", import.meta.url)
+      new URL("../../tooling/tailwind/web.ts", import.meta.url),
    ),
    tailwindFunctions: ["cn", "cva"],
 }
