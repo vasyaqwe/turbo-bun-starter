@@ -8,6 +8,7 @@ import { Link } from "@tanstack/react-router"
 export function Sidebar() {
    const [user] = api.user.me.useSuspenseQuery(undefined, {
       staleTime: Infinity,
+      retry: false,
    })
 
    return (

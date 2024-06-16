@@ -80,7 +80,10 @@ app.get("/login/github/callback", async (ctx) => {
             })
             .returning({ id: users.id })
 
-         if (!createdUser) throw new Error("Unknown error occurred")
+         if (!createdUser)
+            throw new HTTPException(500, {
+               message: "An unknown error occurred",
+            })
 
          await tx.insert(oauthAccounts).values({
             userId: createdUser.id,
@@ -171,7 +174,10 @@ app.get("/login/google/callback", async (ctx) => {
             })
             .returning({ id: users.id })
 
-         if (!createdUser) throw new Error("Unknown error occurred")
+         if (!createdUser)
+            throw new HTTPException(500, {
+               message: "An unknown error occurred",
+            })
 
          await tx.insert(oauthAccounts).values({
             userId: createdUser.id,
@@ -190,6 +196,7 @@ app.get("/login/google/callback", async (ctx) => {
          sessionCookie.value,
          sessionCookie.attributes
       )
+      console.log("Created user", createdUser, "hello")
       return ctx.redirect(`${env.VITE_BASE_URL}`)
    } catch (e) {
       throw new HTTPException(500, { message: "An unknown error occurred" })

@@ -72,7 +72,7 @@ function Page() {
       isSuccess: googleLoginSuccess,
    } = api.user.googleLogin.useMutation({
       onSuccess: (res) => {
-         window.location.replace(res.url)
+         window.location.href = res.url
       },
    })
 

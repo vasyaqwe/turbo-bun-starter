@@ -7,10 +7,14 @@ export const env = createEnv({
          .enum(["development", "production", "test"])
          .default("development"),
    },
+
+   clientPrefix: "VITE_",
+   client: {
+      VITE_SERVER_URL: z.string().min(1),
+      VITE_BASE_URL: z.string().min(1),
+   },
    server: {
       UNKEY_ROOT_KEY: z.string().min(1),
-
-      VITE_BASE_URL: z.string().min(1),
 
       GITHUB_CLIENT_ID: z.string().min(1),
       GITHUB_CLIENT_SECRET: z.string().min(1),
@@ -21,6 +25,7 @@ export const env = createEnv({
    runtimeEnvStrict: {
       NODE_ENV: process.env.NODE_ENV,
 
+      VITE_SERVER_URL: process.env.VITE_SERVER_URL,
       VITE_BASE_URL: process.env.VITE_BASE_URL,
 
       GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
