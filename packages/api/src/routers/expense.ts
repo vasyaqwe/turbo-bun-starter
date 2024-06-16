@@ -4,20 +4,16 @@ import { createTRPCRouter, protectedProcedure } from "../trpc"
 
 export const expense = createTRPCRouter({
    list: protectedProcedure.query(async ({ ctx }) => {
-      const res = await ctx.db
+      return await ctx.db
          .select()
          .from(expenses)
          .where(eq(expenses.userId, ctx.session.user.id))
-
-      return res
    }),
    list2: protectedProcedure.query(async ({ ctx }) => {
-      const res = await ctx.db
+      return await ctx.db
          .select()
          .from(expenses)
          .where(eq(expenses.userId, ctx.session.user.id))
-
-      return res
    }),
    insert: protectedProcedure
       .input(insertExpenseParams)

@@ -226,6 +226,6 @@ if (!isProd) showRoutes(app, { verbose: true, colorize: true })
 
 console.log(`Starting server on port ${port}`)
 
-const server = { port, fetch: app.fetch, keepalive: true }
+const server = { port, fetch: app.fetch }
 
 export default server

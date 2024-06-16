@@ -61,7 +61,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <TRPCReactProvider>
          <RouterProvider router={router} />
       </TRPCReactProvider>
-   </React.StrictMode>
+   </React.StrictMode>,
 )
 
 function NotFound() {
