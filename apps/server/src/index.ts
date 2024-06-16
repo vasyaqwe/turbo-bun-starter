@@ -17,9 +17,9 @@ const app = new Hono()
 app.use(csrf())
 app.use(
    cors({
-      origin: env.VITE_BASE_URL,
+      origin: [env.VITE_BASE_URL, "https://acme-vite-turbo.vercel.app"],
       credentials: true,
-   })
+   }),
 )
 
 app.get("/", (ctx) => {
@@ -56,8 +56,8 @@ app.get("/login/github/callback", async (ctx) => {
          .where(
             and(
                eq(oauthAccounts.providerId, "github"),
-               eq(oauthAccounts.providerUserId, githubUser.id.toString())
-            )
+               eq(oauthAccounts.providerUserId, githubUser.id.toString()),
+            ),
          )
 
       if (existingUser) {
@@ -126,7 +126,7 @@ app.get("/login/google/callback", async (ctx) => {
             headers: {
                Authorization: `Bearer ${tokens.accessToken}`,
             },
-         }
+         },
       )
       const googleUser = (await googleResponse.json()) as {
          id: string
@@ -144,8 +144,8 @@ app.get("/login/google/callback", async (ctx) => {
          .where(
             and(
                eq(oauthAccounts.providerId, "google"),
-               eq(oauthAccounts.providerUserId, googleUser.id)
-            )
+               eq(oauthAccounts.providerUserId, googleUser.id),
+            ),
          )
 
       if (existingUser) {
@@ -208,7 +208,7 @@ app.use(
       onError({ error, path }) {
          console.error(`>>> tRPC Error on '${path}'`, error)
       },
-   })
+   }),
 )
 
 app.onError((err, c) => {
