@@ -6,7 +6,8 @@ import { fileURLToPath } from "url"
 /** @type { PrettierConfig | TailwindConfig } */
 const config = {
    plugins: ["prettier-plugin-tailwindcss"],
-   trailingComma: "es5",
+   trailingComma: "all",
+   arrowParens: "always",
    tabWidth: 3,
    semi: false,
    singleAttributePerLine: true,

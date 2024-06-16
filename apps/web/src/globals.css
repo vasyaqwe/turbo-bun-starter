@@ -22,8 +22,8 @@
 
       --radius: .875rem;
 
-      --shadow: 0px 0px 0px 1px rgba(9, 9, 11, .09),
-         0px 2px 2px 0px rgba(9, 9, 11, .10);
+      --shadow: 0px 0px 0px 1px rgba(9, 9, 11, .06),
+         0px 2px 2px 0px rgba(9, 9, 11, .07);
    }
 }
 

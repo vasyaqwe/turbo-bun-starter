@@ -4,8 +4,13 @@ import { cors } from "hono/cors"
 import { showRoutes } from "hono/dev"
 import { appRouter, createTRPCContext } from "@acme/api"
 import { csrf } from "hono/csrf"
-import { getAuthSession } from "@acme/api/auth"
+import { getAuthSession, github, google, lucia } from "@acme/api/auth"
 import { env } from "./env"
+import { getCookie } from "hono/cookie"
+import { and, eq, oauthAccounts, users } from "@acme/db"
+import { db } from "@acme/db/client"
+import { setCookie } from "hono/cookie"
+import { HTTPException } from "hono/http-exception"
 
 const app = new Hono()
 
@@ -17,8 +22,178 @@ app.use(
    })
 )
 
-app.get("/", (c) => {
-   return c.text("Hello Hono!")
+app.get("/", (ctx) => {
+   return ctx.text("Hello Hono!")
+})
+
+app.get("/login/github/callback", async (ctx) => {
+   const storedState = getCookie(ctx, "github_oauth_state")
+   const { code, state } = ctx.req.query()
+   // validate state
+   if (
+      !storedState ||
+      !state ||
+      storedState !== state ||
+      typeof code !== "string"
+   ) {
+      throw new HTTPException(400, { message: "Bad request" })
+   }
+   try {
+      const tokens = await github.validateAuthorizationCode(code)
+      const githubResponse = await fetch("https://api.github.com/user", {
+         headers: {
+            Authorization: `Bearer ${tokens.accessToken}`,
+         },
+      })
+      const githubUser = (await githubResponse.json()) as {
+         id: number
+         login: string // username
+      }
+
+      const [existingUser] = await db
+         .select({ userId: oauthAccounts.userId })
+         .from(oauthAccounts)
+         .where(
+            and(
+               eq(oauthAccounts.providerId, "github"),
+               eq(oauthAccounts.providerUserId, githubUser.id.toString())
+            )
+         )
+
+      if (existingUser) {
+         const session = await lucia.createSession(existingUser.userId, {})
+         const sessionCookie = lucia.createSessionCookie(session.id)
+         setCookie(
+            ctx,
+            sessionCookie.name,
+            sessionCookie.value,
+            sessionCookie.attributes
+         )
+         return ctx.redirect(`${env.VITE_BASE_URL}`)
+      }
+
+      const createdUser = await db.transaction(async (tx) => {
+         const [createdUser] = await tx
+            .insert(users)
+            .values({
+               firstName: githubUser.login,
+            })
+            .returning({ id: users.id })
+
+         if (!createdUser) throw new Error("Unknown error occurred")
+
+         await tx.insert(oauthAccounts).values({
+            userId: createdUser.id,
+            providerId: "github",
+            providerUserId: githubUser.id.toString(),
+         })
+
+         return createdUser
+      })
+
+      const session = await lucia.createSession(createdUser.id, {})
+      const sessionCookie = lucia.createSessionCookie(session.id)
+      setCookie(
+         ctx,
+         sessionCookie.name,
+         sessionCookie.value,
+         sessionCookie.attributes
+      )
+      return ctx.redirect(`${env.VITE_BASE_URL}`)
+   } catch (e) {
+      throw new HTTPException(500, { message: "An unknown error occurred" })
+   }
+})
+app.get("/login/google/callback", async (ctx) => {
+   const { code, state } = ctx.req.query()
+   const codeVerifier = getCookie(ctx, "google_code_verifier") ?? null
+   const storedState = getCookie(ctx, "state") ?? null
+
+   // validate state
+   if (
+      !code ||
+      !codeVerifier ||
+      !state ||
+      !storedState ||
+      state !== storedState
+   ) {
+      throw new HTTPException(400, { message: "Bad request" })
+   }
+   try {
+      const tokens = await google.validateAuthorizationCode(code, codeVerifier)
+      const googleResponse = await fetch(
+         "https://www.googleapis.com/oauth2/v1/userinfo",
+         {
+            headers: {
+               Authorization: `Bearer ${tokens.accessToken}`,
+            },
+         }
+      )
+      const googleUser = (await googleResponse.json()) as {
+         id: string
+         email: string
+         verified_email: boolean
+         name?: string
+         given_name: string
+         picture: string
+         locale: string
+      }
+
+      const [existingUser] = await db
+         .select({ userId: oauthAccounts.userId })
+         .from(oauthAccounts)
+         .where(
+            and(
+               eq(oauthAccounts.providerId, "google"),
+               eq(oauthAccounts.providerUserId, googleUser.id)
+            )
+         )
+
+      if (existingUser) {
+         const session = await lucia.createSession(existingUser.userId, {})
+         const sessionCookie = lucia.createSessionCookie(session.id)
+         setCookie(
+            ctx,
+            sessionCookie.name,
+            sessionCookie.value,
+            sessionCookie.attributes
+         )
+         return ctx.redirect(`${env.VITE_BASE_URL}`)
+      }
+      const createdUser = await db.transaction(async (tx) => {
+         const [createdUser] = await tx
+            .insert(users)
+            .values({
+               email: googleUser.email,
+               firstName: googleUser.name ?? googleUser.given_name,
+               avatarUrl: googleUser.picture,
+               emailVerified: googleUser.verified_email,
+            })
+            .returning({ id: users.id })
+
+         if (!createdUser) throw new Error("Unknown error occurred")
+
+         await tx.insert(oauthAccounts).values({
+            userId: createdUser.id,
+            providerId: "google",
+            providerUserId: googleUser.id,
+         })
+
+         return createdUser
+      })
+
+      const session = await lucia.createSession(createdUser.id, {})
+      const sessionCookie = lucia.createSessionCookie(session.id)
+      setCookie(
+         ctx,
+         sessionCookie.name,
+         sessionCookie.value,
+         sessionCookie.attributes
+      )
+      return ctx.redirect(`${env.VITE_BASE_URL}`)
+   } catch (e) {
+      throw new HTTPException(500, { message: "An unknown error occurred" })
+   }
 })
 
 app.use(
@@ -36,6 +211,14 @@ app.use(
       },
    })
 )
+
+app.onError((err, c) => {
+   if (err instanceof HTTPException) {
+      // Get the custom response
+      return c.redirect(env.VITE_BASE_URL)
+   }
+   return c.text("An unknown error occurred", 500)
+})
 
 const isProd = env.NODE_ENV === "production"
 const port = !isProd ? 3001 : 3000

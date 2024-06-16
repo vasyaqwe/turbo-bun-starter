@@ -70,13 +70,21 @@ function Page() {
       isPending: googleLoginPending,
       mutate: googleLoginMutate,
       isSuccess: googleLoginSuccess,
-   } = api.user.googleLogin.useMutation()
+   } = api.user.googleLogin.useMutation({
+      onSuccess: (res) => {
+         window.location.replace(res.url)
+      },
+   })
 
    const {
       isPending: githubLoginPending,
       mutate: githubLoginMutate,
       isSuccess: githubLoginSuccess,
-   } = api.user.githubLogin.useMutation()
+   } = api.user.githubLogin.useMutation({
+      onSuccess: (res) => {
+         window.location.href = res.url
+      },
+   })
 
    return (
       <div className="isolate grid min-h-[85vh] place-items-center">

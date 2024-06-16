@@ -123,8 +123,8 @@ export const user = createTRPCRouter({
       }),
    verifyLoginCode: publicProcedure
       .input(verifyLoginCodeParams)
-      .mutation(async ({ input: { code, userId }, ctx: { db } }) => {
-         const validCode = await verifyVerificationCode(db, userId, code)
+      .mutation(async ({ input: { code, userId }, ctx }) => {
+         const validCode = await verifyVerificationCode(ctx.db, userId, code)
          if (!validCode)
             throw new TRPCError({
                code: "BAD_REQUEST",
@@ -132,13 +132,20 @@ export const user = createTRPCRouter({
             })
 
          await lucia.invalidateUserSessions(userId)
-         await db
+         await ctx.db
             .update(users)
             .set({ emailVerified: true })
             .where(eq(users.id, userId))
 
          const session = await lucia.createSession(userId, {})
          const sessionCookie = lucia.createSessionCookie(session.id)
+         setCookie(
+            ctx.honoCtx,
+            sessionCookie.name,
+            sessionCookie.value,
+            sessionCookie.attributes
+         )
+
          return sessionCookie
       }),
 })
