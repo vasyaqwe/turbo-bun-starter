@@ -8,7 +8,7 @@ COPY . .
 # To keep the image small ;)
 RUN rm -rf /app/apps/mobile /app/apps/web /app/packages/ui /app/packages/emails /app/tooling/tailwind /app/tooling/github
 
-RUN bun install --ignore-scripts
+RUN rm -rf bun.lockb && bun install --ignore-scripts
 
 EXPOSE 3000
 

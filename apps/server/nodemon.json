@@ -2,7 +2,6 @@
    "watch": [
       "../../packages/api",
       "../../packages/db",
-      "../../packages/emails",
       "."
    ],
    "ext": "js,ts,json",
