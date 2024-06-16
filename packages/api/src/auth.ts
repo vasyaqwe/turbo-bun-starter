@@ -19,7 +19,7 @@ export const github = new GitHub(env.GITHUB_CLIENT_ID, env.GITHUB_CLIENT_SECRET)
 export const google = new Google(
    env.GOOGLE_CLIENT_ID,
    env.GOOGLE_CLIENT_SECRET,
-   env.VITE_SERVER_URL + "/login/google/callback"
+   env.VITE_SERVER_URL + "/login/google/callback",
 )
 
 export const initLucia = () => {
@@ -60,7 +60,7 @@ export const getAuthSession = async (c: Context) => {
          lucia.createSessionCookie(session.id).serialize(),
          {
             append: true,
-         }
+         },
       )
    }
    if (!session) {

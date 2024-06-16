@@ -151,7 +151,7 @@ export const user = createTRPCRouter({
 const verifyVerificationCode = async (
    db: typeof database,
    userId: string,
-   code: string
+   code: string,
 ) => {
    let isValid = true
 
