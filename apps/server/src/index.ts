@@ -63,12 +63,10 @@ app.get("/login/github/callback", async (ctx) => {
       if (existingUser) {
          const session = await lucia.createSession(existingUser.userId, {})
          const sessionCookie = lucia.createSessionCookie(session.id)
-         setCookie(
-            ctx,
-            sessionCookie.name,
-            sessionCookie.value,
-            sessionCookie.attributes
-         )
+         setCookie(ctx, sessionCookie.name, sessionCookie.value, {
+            ...sessionCookie.attributes,
+            sameSite: env.NODE_ENV === "production" ? "none" : "lax",
+         })
          return ctx.redirect(`${env.VITE_BASE_URL}`)
       }
 
@@ -96,12 +94,10 @@ app.get("/login/github/callback", async (ctx) => {
 
       const session = await lucia.createSession(createdUser.id, {})
       const sessionCookie = lucia.createSessionCookie(session.id)
-      setCookie(
-         ctx,
-         sessionCookie.name,
-         sessionCookie.value,
-         sessionCookie.attributes
-      )
+      setCookie(ctx, sessionCookie.name, sessionCookie.value, {
+         ...sessionCookie.attributes,
+         sameSite: env.NODE_ENV === "production" ? "none" : "lax",
+      })
       return ctx.redirect(`${env.VITE_BASE_URL}`)
    } catch (e) {
       throw new HTTPException(500, { message: "An unknown error occurred" })
@@ -155,12 +151,10 @@ app.get("/login/google/callback", async (ctx) => {
       if (existingUser) {
          const session = await lucia.createSession(existingUser.userId, {})
          const sessionCookie = lucia.createSessionCookie(session.id)
-         setCookie(
-            ctx,
-            sessionCookie.name,
-            sessionCookie.value,
-            sessionCookie.attributes
-         )
+         setCookie(ctx, sessionCookie.name, sessionCookie.value, {
+            ...sessionCookie.attributes,
+            sameSite: env.NODE_ENV === "production" ? "none" : "lax",
+         })
          return ctx.redirect(`${env.VITE_BASE_URL}`)
       }
       const createdUser = await db.transaction(async (tx) => {
@@ -190,12 +184,10 @@ app.get("/login/google/callback", async (ctx) => {
 
       const session = await lucia.createSession(createdUser.id, {})
       const sessionCookie = lucia.createSessionCookie(session.id)
-      setCookie(
-         ctx,
-         sessionCookie.name,
-         sessionCookie.value,
-         sessionCookie.attributes
-      )
+      setCookie(ctx, sessionCookie.name, sessionCookie.value, {
+         ...sessionCookie.attributes,
+         sameSite: env.NODE_ENV === "production" ? "none" : "lax",
+      })
       console.log("Created user", createdUser, "hello")
       return ctx.redirect(`${env.VITE_BASE_URL}`)
    } catch (e) {
