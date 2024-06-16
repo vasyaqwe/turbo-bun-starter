@@ -31,14 +31,14 @@ export const user = createTRPCRouter({
          secure: env.NODE_ENV === "production",
          httpOnly: true,
          maxAge: 60 * 10,
-         sameSite: "lax",
+         sameSite: env.NODE_ENV === "production" ? "none" : "lax",
       })
       setCookie(ctx.honoCtx, "google_code_verifier", codeVerifier, {
          path: "/",
          secure: env.NODE_ENV === "production",
          httpOnly: true,
          maxAge: 60 * 10,
-         sameSite: "lax",
+         sameSite: env.NODE_ENV === "production" ? "none" : "lax",
       })
       const url = await google.createAuthorizationURL(state, codeVerifier, {
          scopes: ["email", "profile"],
@@ -55,7 +55,7 @@ export const user = createTRPCRouter({
          secure: env.NODE_ENV === "production",
          httpOnly: true,
          maxAge: 60 * 10,
-         sameSite: "lax",
+         sameSite: env.NODE_ENV === "production" ? "none" : "lax",
       })
 
       return { url: url.toString() }
@@ -139,12 +139,10 @@ export const user = createTRPCRouter({
 
          const session = await lucia.createSession(userId, {})
          const sessionCookie = lucia.createSessionCookie(session.id)
-         setCookie(
-            ctx.honoCtx,
-            sessionCookie.name,
-            sessionCookie.value,
-            sessionCookie.attributes
-         )
+         setCookie(ctx.honoCtx, sessionCookie.name, sessionCookie.value, {
+            ...sessionCookie.attributes,
+            sameSite: env.NODE_ENV === "production" ? "none" : "lax",
+         })
 
          return sessionCookie
       }),
