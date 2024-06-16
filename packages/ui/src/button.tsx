@@ -23,7 +23,7 @@ const buttonVariants = cva(
          variant: "default",
          size: "default",
       },
-   }
+   },
 )
 
 type ButtonProps = ComponentProps<"button"> &
@@ -38,7 +38,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             {...props}
          />
       )
-   }
+   },
 )
 
 export { Button, buttonVariants, type ButtonProps }

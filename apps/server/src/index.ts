@@ -19,6 +19,7 @@ app.use(
    cors({
       origin: [env.VITE_BASE_URL, "https://acme-vite-turbo.vercel.app"],
       credentials: true,
+      maxAge: 600,
    }),
 )
 
