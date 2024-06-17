@@ -13,3 +13,5 @@ dist
 Dockerfile
 .nvmrc
 .vscode
+npm-debug.log
+pnpm-lock.yaml
