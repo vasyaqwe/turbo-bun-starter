@@ -22,7 +22,6 @@ FROM base AS install-prod
 COPY ./packages ./packages
 COPY ./apps/server ./apps/server
 RUN rm -rf bun.lockb && bun install --ignore-scripts --production
-RUN ./patch-install.sh
 
 # Build
 FROM base AS build
