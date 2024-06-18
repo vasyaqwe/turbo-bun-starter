@@ -7,6 +7,7 @@ export const env = createEnv({
          .enum(["development", "production", "test"])
          .default("development"),
    },
+
    clientPrefix: "VITE_",
    client: {
       VITE_SERVER_URL: z.string().min(1),
