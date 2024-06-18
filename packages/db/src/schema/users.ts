@@ -4,16 +4,15 @@ import {
    text,
    timestamp,
    uniqueIndex,
-   uuid,
 } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 import { z } from "zod"
-import { createTable, id, lifecycleDates } from "../utils"
+import { createTable, id, lifecycleDates, newId } from "../utils"
 
 export const users = createTable(
    "users",
    {
-      id,
+      id: newId("user"),
       email: text("email"),
       firstName: text("first_name"),
       avatarUrl: text("avatar_url"),
@@ -24,13 +23,13 @@ export const users = createTable(
       return {
          emailIdx: uniqueIndex("email_idx").on(table.email),
       }
-   }
+   },
 )
 
 export const oauthAccounts = createTable(
    "oauth_accounts",
    {
-      userId: uuid("user_id")
+      userId: id("user_id")
          .primaryKey()
          .notNull()
          .references(() => users.id, { onDelete: "cascade" }),
@@ -41,31 +40,31 @@ export const oauthAccounts = createTable(
       return {
          providerIdIdx: index("provider_id_idx").on(table.providerId),
          providerUserIdIdx: index("provider_user_id_idx").on(
-            table.providerUserId
+            table.providerUserId,
          ),
       }
-   }
+   },
 )
 
 export const emailVerificationCodes = createTable(
    "email_verification_codes",
    {
-      id,
+      id: newId("verification_code"),
       expiresAt: timestamp("expires_at", {
          withTimezone: true,
          mode: "date",
       }).notNull(),
       code: text("code").notNull(),
-      userId: uuid("user_id").notNull(),
+      userId: id("user_id").notNull(),
       email: text("email").notNull().unique(),
    },
    (table) => {
       return {
          emailVerificationCodeUserIdIdx: index(
-            "email_verification_code_user_id_idx"
+            "email_verification_code_user_id_idx",
          ).on(table.userId),
       }
-   }
+   },
 )
 
 export const sessions = createTable("sessions", {
@@ -74,7 +73,7 @@ export const sessions = createTable("sessions", {
       withTimezone: true,
       mode: "date",
    }).notNull(),
-   userId: uuid("user_id")
+   userId: id("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
 })
@@ -84,7 +83,7 @@ export const insertUserParams = z.object({
    email: z.string().email(),
 })
 export const verifyLoginCodeParams = createInsertSchema(
-   emailVerificationCodes
+   emailVerificationCodes,
 ).pick({
    code: true,
    userId: true,

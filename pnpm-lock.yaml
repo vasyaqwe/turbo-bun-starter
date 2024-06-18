@@ -147,18 +147,6 @@ importers:
       '@hono/trpc-server':
         specifier: ^0.3.1
         version: 0.3.1(@trpc/server@11.0.0-rc.403)(hono@4.4.5)
-      '@t3-oss/env-core':
-        specifier: ^0.10.1
-        version: 0.10.1(typescript@5.4.5)(zod@3.23.8)
-      '@trpc/server':
-        specifier: 11.0.0-rc.403
-        version: 11.0.0-rc.403
-      hono:
-        specifier: 4.4.5
-        version: 4.4.5
-      zod:
-        specifier: ^3.23.8
-        version: 3.23.8
     devDependencies:
       '@acme/eslint-config':
         specifier: workspace:*
@@ -330,6 +318,9 @@ importers:
       '@vercel/postgres':
         specifier: ^0.8.0
         version: 0.8.0
+      base-x:
+        specifier: ^4.0.0
+        version: 4.0.0
       drizzle-orm:
         specifier: ^0.30.10
         version: 0.30.10(@neondatabase/serverless@0.9.3)(@types/pg@8.11.6)(@types/react@18.3.3)(@vercel/postgres@0.8.0)(bun-types@1.1.13)(postgres@3.4.4)(react@18.3.1)
@@ -3428,6 +3419,9 @@ packages:
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
+
+  base-x@4.0.0:
+    resolution: {integrity: sha512-FuwxlW4H5kh37X/oW59pwTzzTKRzfrrQwhmyspRM7swOEZcHtDZSCt45U6oKgtuFE+WYPblePMVIPR4RZrh/hw==}
 
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
@@ -11209,6 +11203,8 @@ snapshots:
       - supports-color
 
   balanced-match@1.0.2: {}
+
+  base-x@4.0.0: {}
 
   base64-js@1.5.1: {}
 
