@@ -2,7 +2,7 @@ name: fly-deploy
 
 on:
    push:
-      branches: ["main"]
+      branches: ["fly"]
 
 jobs:
    deploy:
