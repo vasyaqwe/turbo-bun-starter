@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-properties */
 import { appRouter, createTRPCContext } from "@acme/api"
 import { getAuthSession, github, google, lucia } from "@acme/api/auth"
 import { and, eq, oauthAccounts, users } from "@acme/db"
@@ -220,7 +221,7 @@ app.onError((err, c) => {
 })
 
 const isProd = env.NODE_ENV === "production"
-const port = !isProd ? 3001 : 3000
+const port = !isProd ? 3001 : process.env.PORT
 
 if (!isProd) showRoutes(app, { verbose: true, colorize: true })
 
