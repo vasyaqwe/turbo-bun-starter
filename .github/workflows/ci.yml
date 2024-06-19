@@ -2,7 +2,7 @@ name: CI
 
 on:
    push:
-      branches: ["fly"]
+      branches: ["railway"]
    merge_group:
 
 concurrency:
