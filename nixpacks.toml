@@ -1,4 +1,4 @@
-providers = ["node"]
+providers = ["node", "bun"]
 
 [phases.install]
-cmds = ["npm install -g corepack", "corepack enable", "corepack prepare pnpm@9.1.0 --activate", "pnpm install"]
+cmds = ["npm install -g corepack", "corepack enable", "corepack prepare pnpm@9.1.0 --activate", "pnpm install", "curl -fsSL https://bun.sh/install | bash"]
