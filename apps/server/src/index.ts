@@ -17,7 +17,11 @@ const app = new Hono()
 app.use(csrf())
 app.use(
    cors({
-      origin: [env.VITE_BASE_URL, "https://acme-vite-turbo.vercel.app"],
+      origin: [
+         env.VITE_BASE_URL,
+         "https://acme-vite-turbo.vercel.app",
+         "https://acme-vite-turbo-railway.vercel.app",
+      ],
       credentials: true,
       maxAge: 600,
    }),
