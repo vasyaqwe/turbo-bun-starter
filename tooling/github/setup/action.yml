@@ -2,16 +2,13 @@ name: "Setup and install"
 description: "Common setup steps for Actions"
 
 runs:
-  using: composite
-  steps:
-    - uses: pnpm/action-setup@v2
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 20
-        cache: "pnpm"
+   using: composite
+   steps:
+      - uses: oven-sh/setup-bun@v1
+        with:
+           version: 1.1.15
+      - shell: bash
+        run: bun add -g turbo
 
-    - shell: bash
-      run: pnpm add -g turbo
-
-    - shell: bash
-      run: pnpm install
+      - shell: bash
+        run: bun install

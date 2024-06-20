@@ -34,10 +34,9 @@
       "dev": "tsc --watch",
       "clean": "rm -rf .turbo node_modules",
       "lint": "eslint",
-      "push": "pnpm with-env drizzle-kit push",
-      "studio": "pnpm with-env drizzle-kit studio",
-      "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-      "with-env": "dotenv -e ../../.env --"
+      "push": "bun --env-file=../../.env drizzle-kit push",
+      "studio": "bun --env-file=../../.env drizzle-kit studio",
+      "typecheck": "tsc --noEmit --emitDeclarationOnly false"
    },
    "dependencies": {
       "@t3-oss/env-core": "^0.10.1",
@@ -51,7 +50,6 @@
       "@acme/eslint-config": "workspace:*",
       "@acme/prettier-config": "workspace:*",
       "@acme/tsconfig": "workspace:*",
-      "dotenv-cli": "^7.4.2",
       "drizzle-kit": "^0.21.1",
       "typescript": "^5.4.5"
    },

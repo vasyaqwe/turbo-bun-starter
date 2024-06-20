@@ -2,7 +2,7 @@ name: CI
 
 on:
    push:
-      branches: ["railway"]
+      branches: ["main"]
    merge_group:
 
 concurrency:
@@ -19,7 +19,7 @@ jobs:
            uses: ./tooling/github/setup
 
          - name: Lint
-           run: pnpm lint && pnpm lint:ws
+           run: bun lint
 
    typecheck:
       runs-on: ubuntu-latest
@@ -30,4 +30,4 @@ jobs:
            uses: ./tooling/github/setup
 
          - name: Typecheck
-           run: pnpm typecheck
+           run: bun typecheck

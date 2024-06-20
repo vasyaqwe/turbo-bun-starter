@@ -1,18 +1,15 @@
 {
   "name": "acme-turbo",
   "private": true,
-  "engines": {
-    "node": ">=20.13.1"
-  },
-  "packageManager": "pnpm@9.1.0",
+  "packageManager": "bun@1.1.12",
   "scripts": {
-    "build": "turbo build && pnpm db:push",
-    "build:web": "turbo build --filter=@acme/web && pnpm db:push",
+    "build": "turbo build && bun db:push",
+    "build:web": "turbo build --filter=@acme/web && bun db:push",
     "start": "turbo start",
     "clean": "git clean -xdf node_modules",
     "clean:workspaces": "turbo clean",
-    "db:push": "pnpm -F db push",
-    "db:studio": "pnpm -F db studio",
+    "db:push": "bun --filter @acme/db push",
+    "db:studio": "bun --filter @acme/db studio",
     "dev": "turbo dev --parallel",
     "dev:web": "turbo dev --filter=@acme/web --filter=@acme/ui --filter=@acme/server",
     "dev:mobile": "turbo dev --filter=@acme/mobile --filter=@acme/server",
@@ -20,10 +17,8 @@
     "format:fix": "turbo format --continue -- --write --cache --cache-location node_modules/.cache/.prettiercache",
     "lint": "turbo lint --continue -- --cache --cache-location node_modules/.cache/.eslintcache",
     "lint:fix": "turbo lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
-    "lint:ws": "pnpm dlx sherif@latest",
-    "postinstall": "pnpm lint:ws",
     "typecheck": "turbo typecheck",
-    "ui-add": "pnpm -F ui ui-add"
+    "ui-add": "bun --filter @acme/ui ui-add"
   },
   "workspaces": [
     "apps/*",
