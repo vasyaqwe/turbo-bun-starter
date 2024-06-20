@@ -1,11 +1,13 @@
 import type { Config } from "drizzle-kit"
-import { env } from "./src/env"
+import dotenv from "dotenv"
 
-const url = env.DATABASE_URL
+dotenv.config({
+   path: "../../.env",
+})
 
 export default {
    schema: "./src/schema/**/*.ts",
    dialect: "postgresql",
-   dbCredentials: { url },
+   dbCredentials: { url: process.env.DATABASE_URL! },
    tablesFilter: ["acme_*"],
 } satisfies Config

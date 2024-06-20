@@ -1,10 +1,10 @@
 {
   "name": "acme-turbo",
   "private": true,
-  "packageManager": "bun@1.1.12",
+  "packageManager": "bun@1.1.15",
   "scripts": {
-    "build": "turbo build && bun db:push",
-    "build:web": "turbo build --filter=@acme/web && bun db:push",
+    "build": "turbo build",
+    "build:web": "turbo build --filter=@acme/web",
     "start": "turbo start",
     "clean": "git clean -xdf node_modules",
     "clean:workspaces": "turbo clean",
@@ -32,5 +32,10 @@
     "turbo": "^2.0.3",
     "typescript": "^5.4.5"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@acme/prettier-config",
+  "trustedDependencies": [
+    "core-js",
+    "core-js-pure",
+    "es5-ext"
+  ]
 }

@@ -43,7 +43,7 @@ const DrawerContent = React.forwardRef<
          ref={ref}
          className={cn(
             "fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-lg border bg-background shadow-[0_-5px_15px_-3px_hsl(var(--foreground)/.06)] [&>div]:p-4 [&>form]:p-4",
-            className
+            className,
          )}
          {...props}
       >
@@ -84,7 +84,7 @@ const DrawerTitle = React.forwardRef<
       ref={ref}
       className={cn(
          "text-lg font-semibold leading-none tracking-tight",
-         className
+         className,
       )}
       {...props}
    />

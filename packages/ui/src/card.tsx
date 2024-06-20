@@ -1,4 +1,4 @@
-import { type ComponentProps,forwardRef } from "react"
+import { type ComponentProps, forwardRef } from "react"
 import { cn } from "."
 
 const Card = forwardRef<HTMLDivElement, ComponentProps<"div">>(
@@ -8,7 +8,7 @@ const Card = forwardRef<HTMLDivElement, ComponentProps<"div">>(
          className={cn(`rounded-lg bg-popover p-8 shadow-shadow`, className)}
          {...props}
       />
-   )
+   ),
 )
 
 export { Card }

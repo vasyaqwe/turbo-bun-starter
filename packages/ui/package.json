@@ -9,6 +9,7 @@
    },
    "license": "MIT",
    "scripts": {
+      "build": "tsc",
       "add": "bunx shadcn-ui add",
       "clean": "rm -rf .turbo node_modules",
       "format": "prettier --check . --ignore-path ../../.gitignore",

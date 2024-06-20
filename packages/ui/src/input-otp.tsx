@@ -12,7 +12,7 @@ const InputOTP = React.forwardRef<
       ref={ref}
       containerClassName={cn(
          "flex items-center gap-2 has-[:disabled]:opacity-85",
-         containerClassName
+         containerClassName,
       )}
       className={cn("disabled:cursor-not-allowed", className)}
       {...props}
@@ -44,7 +44,7 @@ const InputOTPSlot = React.forwardRef<
          className={cn(
             `border-input relative flex h-12 flex-[0_0_16.66%] items-center justify-center border-y border-r bg-background text-xl transition-all first:rounded-l-md first:border-l last:rounded-r-md md:h-14 md:text-2xl lg:first:rounded-l-lg lg:last:rounded-r-lg`,
             inputOTPContext.slots[index]?.isActive && "ring ring-border/40",
-            className
+            className,
          )}
          {...props}
       >
@@ -73,4 +73,4 @@ const InputOTPSeparator = React.forwardRef<
 ))
 InputOTPSeparator.displayName = "InputOTPSeparator"
 
-export { InputOTP, InputOTPGroup, InputOTPSeparator,InputOTPSlot }
+export { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot }

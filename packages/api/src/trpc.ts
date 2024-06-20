@@ -85,5 +85,5 @@ export const publicRateLimitedProcedure = t.procedure.use(
       }
 
       return next()
-   }
+   },
 )

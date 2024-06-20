@@ -8,9 +8,6 @@ export default defineConfig(({ mode }) => {
    process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
 
    return {
-      optimizeDeps: {
-         include: ["@acme/ui", "@acme/emails", "@acme/api"],
-      },
       plugins: [react(), TanStackRouterVite(), tsconfigPaths()],
    }
 })

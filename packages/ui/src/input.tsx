@@ -1,9 +1,9 @@
-import { forwardRef,type InputHTMLAttributes } from "react"
+import { forwardRef, type InputHTMLAttributes } from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "."
 
 const inputVariants = cva(
-   `block h-[37px] w-full rounded-md border px-3 transition placeholder:text-foreground/40 focus:outline-none focus:ring focus:ring-border/50`
+   `block h-[37px] w-full rounded-md border px-3 transition placeholder:text-foreground/40 focus:outline-none focus:ring focus:ring-border/50`,
 )
 const Input = forwardRef<
    HTMLInputElement,

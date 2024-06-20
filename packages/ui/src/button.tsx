@@ -41,4 +41,4 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
    },
 )
 
-export { Button, type ButtonProps,buttonVariants }
+export { Button, type ButtonProps, buttonVariants }
