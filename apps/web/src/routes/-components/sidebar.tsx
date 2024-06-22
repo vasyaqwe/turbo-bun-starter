@@ -14,7 +14,10 @@ export function Sidebar() {
    return (
       <aside className="w-72 p-6 max-md:hidden">
          <header className="flex items-center justify-between">
-            <Link to="/" className="font-bold text-2xl">
+            <Link
+               to="/"
+               className="font-bold text-2xl"
+            >
                Acme
             </Link>
             <UserAvatar user={user} />

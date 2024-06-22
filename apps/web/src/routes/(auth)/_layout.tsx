@@ -5,7 +5,10 @@ export const Route = createFileRoute("/(auth)/_layout")({
    component: () => (
       <>
          <header className="flex justify-between p-5">
-            <Link to={"/"} className="font-semibold text-2xl leading-none">
+            <Link
+               to={"/"}
+               className="font-semibold text-2xl leading-none"
+            >
                acme
             </Link>
          </header>

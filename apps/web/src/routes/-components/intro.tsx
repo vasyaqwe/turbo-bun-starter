@@ -13,12 +13,18 @@ function getTimeOfDay() {
 export function Intro() {
    return (
       <div className="flex w-full items-center justify-between">
-         <h1 suppressHydrationWarning className="font-bold text-xl md:text-2xl">
+         <h1
+            suppressHydrationWarning
+            className="font-bold text-xl md:text-2xl"
+         >
             {getTimeOfDay()}, welcome to Acme
          </h1>
          <Button onClick={() => pushModal("create-expense")}>
             New expense{" "}
-            <PlusIcon className="size-5 flex-shrink-0" strokeWidth={2.5} />
+            <PlusIcon
+               className="size-5 flex-shrink-0"
+               strokeWidth={2.5}
+            />
          </Button>
       </div>
    )

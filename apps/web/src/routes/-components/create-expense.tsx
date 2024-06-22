@@ -83,7 +83,10 @@ export function CreateExpense() {
             </Select>
          </form>
          <DialogFooter>
-            <Button disabled={isPending || isSuccess} form="create-expense">
+            <Button
+               disabled={isPending || isSuccess}
+               form="create-expense"
+            >
                <AnimatedButtonContent isPending={isPending || isSuccess}>
                   Create
                </AnimatedButtonContent>

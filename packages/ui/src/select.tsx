@@ -27,7 +27,10 @@ const SelectTrigger = React.forwardRef<
    >
       {children}
       <SelectPrimitive.Icon asChild>
-         <ChevronDownIcon className="size-2.5 opacity-75" strokeWidth={3.5} />
+         <ChevronDownIcon
+            className="size-2.5 opacity-75"
+            strokeWidth={3.5}
+         />
       </SelectPrimitive.Icon>
    </SelectPrimitive.Trigger>
 ))
@@ -124,7 +127,10 @@ const SelectItem = React.forwardRef<
    >
       <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
          <SelectPrimitive.ItemIndicator>
-            <CheckIcon strokeWidth={2} className="size-4 stroke-foreground" />
+            <CheckIcon
+               strokeWidth={2}
+               className="size-4 stroke-foreground"
+            />
          </SelectPrimitive.ItemIndicator>
       </span>
 

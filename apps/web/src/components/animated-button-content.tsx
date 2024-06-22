@@ -12,8 +12,15 @@ export function AnimatedButtonContent({
    const { ref, width = 1 } = useResizeObserver<HTMLSpanElement>()
 
    return (
-      <span ref={ref} style={{ minWidth: width }} className="flex">
-         <AnimatePresence initial={false} mode="popLayout">
+      <span
+         ref={ref}
+         style={{ minWidth: width }}
+         className="flex"
+      >
+         <AnimatePresence
+            initial={false}
+            mode="popLayout"
+         >
             {!isPending ? (
                <motion.span
                   key={"children"}

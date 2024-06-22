@@ -18,7 +18,6 @@
       "tailwindcss-animate": "^1.0.7"
    },
    "devDependencies": {
-      "@acme/tsconfig": "workspace:*",
-      "typescript": "^5.4.5"
+      "@acme/tsconfig": "workspace:*"
    }
 }

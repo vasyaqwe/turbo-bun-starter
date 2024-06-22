@@ -326,11 +326,17 @@ function Page() {
                      <p className="!mt-8 text-foreground/80 text-sm">
                         By clicking continue, you acknowledge that you have read
                         and agree to Acme's{" "}
-                        <Link to="/" className="underline">
+                        <Link
+                           to="/"
+                           className="underline"
+                        >
                            Terms of Service{" "}
                         </Link>{" "}
                         and{" "}
-                        <Link to="/" className="underline">
+                        <Link
+                           to="/"
+                           className="underline"
+                        >
                            Privacy Policy
                         </Link>
                         .

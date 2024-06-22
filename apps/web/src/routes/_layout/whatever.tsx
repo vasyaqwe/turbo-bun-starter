@@ -60,7 +60,10 @@ function Page() {
                                 </TableRow>
                              ))
                         : expenses.map((expense) => (
-                             <TableRow className="w-[100px]" key={expense.id}>
+                             <TableRow
+                                className="w-[100px]"
+                                key={expense.id}
+                             >
                                 <TableCell className="capitalize">
                                    <Badge
                                       style={

@@ -15,7 +15,6 @@
    },
    "devDependencies": {
       "@acme/tsconfig": "workspace:*",
-      "@types/bun": "latest",
-      "typescript": "^5.4.5"
+      "@types/bun": "latest"
    }
 }

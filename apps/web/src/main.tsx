@@ -31,7 +31,10 @@ const router = createRouter({
                <p className="text-lg">
                   Sorry, we're experiencing technical difficulties.
                </p>
-               <Link className={buttonVariants()} to={"/"}>
+               <Link
+                  className={buttonVariants()}
+                  to={"/"}
+               >
                   Go to homepage
                </Link>
             </div>
@@ -64,10 +67,16 @@ function NotFound() {
          <h1 className="font-bold text-4xl">404</h1>
          <p>This page could not be found.</p>
          <div className="flex items-center justify-center gap-2">
-            <Button variant={"outline"} onClick={() => history.go(-1)}>
+            <Button
+               variant={"outline"}
+               onClick={() => history.go(-1)}
+            >
                Go back
             </Button>
-            <Link className={buttonVariants()} to={`/`}>
+            <Link
+               className={buttonVariants()}
+               to={`/`}
+            >
                Go to homepage
             </Link>
          </div>

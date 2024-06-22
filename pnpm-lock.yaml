@@ -18,7 +18,7 @@ importers:
         specifier: ^2.0.3
         version: 2.0.4
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.5.2
         version: 5.5.2
 
   apps/mobile:
@@ -123,9 +123,6 @@ importers:
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.4(ts-node@10.9.2(@types/node@20.14.8)(typescript@5.5.2))
-      typescript:
-        specifier: ^5.4.5
-        version: 5.5.2
 
   apps/server:
     dependencies:
@@ -145,9 +142,6 @@ importers:
       '@types/bun':
         specifier: latest
         version: 1.1.5
-      typescript:
-        specifier: ^5.4.5
-        version: 5.5.2
 
   apps/web:
     dependencies:
@@ -215,12 +209,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.3.1(vite@5.3.1(@types/node@20.14.8)(lightningcss@1.22.0)(terser@5.31.1))
-      tailwindcss:
-        specifier: ^3.4.3
-        version: 3.4.4(ts-node@10.9.2(@types/node@20.14.8)(typescript@5.5.2))
-      typescript:
-        specifier: ^5.4.5
-        version: 5.5.2
       vite:
         specifier: ^5.3.1
         version: 5.3.1(@types/node@20.14.8)(lightningcss@1.22.0)(terser@5.31.1)
@@ -270,9 +258,6 @@ importers:
       '@acme/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
-      typescript:
-        specifier: ^5.4.5
-        version: 5.5.2
 
   packages/db:
     dependencies:
@@ -304,9 +289,6 @@ importers:
       drizzle-kit:
         specifier: ^0.22.6
         version: 0.22.7
-      typescript:
-        specifier: ^5.4.5
-        version: 5.5.2
 
   packages/emails:
     dependencies:
@@ -326,9 +308,6 @@ importers:
       '@acme/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
-      typescript:
-        specifier: ^5.4.5
-        version: 5.5.2
 
   packages/ui:
     dependencies:
@@ -375,12 +354,6 @@ importers:
       react:
         specifier: 18.3.1
         version: 18.3.1
-      tailwindcss:
-        specifier: ^3.4.3
-        version: 3.4.4(ts-node@10.9.2(@types/node@20.14.8)(typescript@5.5.2))
-      typescript:
-        specifier: ^5.4.5
-        version: 5.5.2
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -402,9 +375,6 @@ importers:
       '@acme/tsconfig':
         specifier: workspace:*
         version: link:../typescript
-      typescript:
-        specifier: ^5.4.5
-        version: 5.5.2
 
   tooling/typescript: {}
 
