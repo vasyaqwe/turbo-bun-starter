@@ -32,9 +32,8 @@
    "scripts": {
       "build": "tsc && drizzle-kit push",
       "clean": "rm -rf .turbo node_modules",
-      "lint": "eslint",
-      "push": "drizzle-kit push",
-      "studio": "bun --env-file=../../.env drizzle-kit studio",
+      "push": "pnpm with-env drizzle-kit push",
+      "studio": "pnpm with-env drizzle-kit studio",
       "typecheck": "tsc --noEmit --emitDeclarationOnly false",
       "with-env": "dotenv -e ../../.env --"
    },
@@ -47,12 +46,9 @@
       "zod": "^3.23.8"
    },
    "devDependencies": {
-      "@acme/eslint-config": "workspace:*",
-      "@acme/prettier-config": "workspace:*",
       "@acme/tsconfig": "workspace:*",
       "drizzle-kit": "^0.22.6",
       "dotenv-cli": "^7.4.2",
       "typescript": "^5.4.5"
-   },
-   "prettier": "@acme/prettier-config"
+   }
 }

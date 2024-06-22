@@ -1,8 +1,8 @@
 "use client"
 
-import * as React from "react"
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/24/outline"
 import * as SelectPrimitive from "@radix-ui/react-select"
+import * as React from "react"
 import { cn } from "."
 import { buttonVariants } from "./button"
 
@@ -27,10 +27,7 @@ const SelectTrigger = React.forwardRef<
    >
       {children}
       <SelectPrimitive.Icon asChild>
-         <ChevronDownIcon
-            className="size-2.5 opacity-75"
-            strokeWidth={3.5}
-         />
+         <ChevronDownIcon className="size-2.5 opacity-75" strokeWidth={3.5} />
       </SelectPrimitive.Icon>
    </SelectPrimitive.Trigger>
 ))
@@ -47,7 +44,7 @@ const SelectScrollUpButton = React.forwardRef<
          className,
       )}
       {...props}
-   ></SelectPrimitive.ScrollUpButton>
+   />
 ))
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName
 
@@ -77,9 +74,9 @@ const SelectContent = React.forwardRef<
       <SelectPrimitive.Content
          ref={ref}
          className={cn(
-            "text-popover-foreground relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md bg-popover shadow-shadow data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:slide-out-to-top-1",
+            "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:slide-out-to-top-1 relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md bg-popover text-popover-foreground shadow-shadow data-[state=closed]:animate-out data-[state=open]:animate-in",
             position === "popper" &&
-               "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
+               "data-[side=left]:-translate-x-1 data-[side=top]:-translate-y-1 data-[side=right]:translate-x-1 data-[side=bottom]:translate-y-1",
             className,
          )}
          position={position}
@@ -107,7 +104,7 @@ const SelectLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
    <SelectPrimitive.Label
       ref={ref}
-      className={cn("py-1.5 pl-2 pr-2 text-sm", className)}
+      className={cn("py-1.5 pr-2 pl-2 text-sm", className)}
       {...props}
    />
 ))
@@ -120,17 +117,14 @@ const SelectItem = React.forwardRef<
    <SelectPrimitive.Item
       ref={ref}
       className={cn(
-         `relative flex w-full select-none items-center rounded-sm py-1 pl-8 pr-2 outline-none focus:bg-accent focus:text-foreground data-[disabled]:pointer-events-none data-[state=checked]:text-foreground data-[disabled]:opacity-50 [&>span:last-child]:flex [&>span:last-child]:w-full [&>span:last-child]:gap-2`,
+         `relative flex w-full select-none items-center rounded-sm py-1 pr-2 pl-8 outline-none data-[disabled]:pointer-events-none [&>span:last-child]:flex [&>span:last-child]:w-full [&>span:last-child]:gap-2 focus:bg-accent data-[state=checked]:text-foreground focus:text-foreground data-[disabled]:opacity-50`,
          className,
       )}
       {...props}
    >
       <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
          <SelectPrimitive.ItemIndicator>
-            <CheckIcon
-               strokeWidth={2}
-               className="size-4 stroke-foreground"
-            />
+            <CheckIcon strokeWidth={2} className="size-4 stroke-foreground" />
          </SelectPrimitive.ItemIndicator>
       </span>
 

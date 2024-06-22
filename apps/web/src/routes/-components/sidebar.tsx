@@ -1,23 +1,20 @@
+import { UserAvatar } from "@/components/ui/user-avatar"
+import { api } from "@/trpc/react"
 import { cn } from "@acme/ui"
 import { buttonVariants } from "@acme/ui/button"
 import { InboxStackIcon, RectangleGroupIcon } from "@heroicons/react/24/outline"
 import { Link } from "@tanstack/react-router"
-import { UserAvatar } from "@/components/ui/user-avatar"
-import { api } from "@/trpc/react"
 
 export function Sidebar() {
    const [user] = api.user.me.useSuspenseQuery(undefined, {
-      staleTime: Infinity,
+      staleTime: Number.POSITIVE_INFINITY,
       retry: false,
    })
 
    return (
       <aside className="w-72 p-6 max-md:hidden">
          <header className="flex items-center justify-between">
-            <Link
-               to="/"
-               className="text-2xl font-bold"
-            >
+            <Link to="/" className="font-bold text-2xl">
                Acme
             </Link>
             <UserAvatar user={user} />
@@ -36,7 +33,7 @@ export function Sidebar() {
                         className: cn(buttonVariants(), "bg-transparent"),
                      }}
                      className={
-                        "w-full !justify-start text-foreground backdrop-blur-md !transition-all hover:bg-popover hover:shadow-[0px_0px_0px_1px_rgba(9,_9,_11,_.06),0px_2px_2px_0px_rgba(9,_9,_11,_.08)] aria-[current=page]:hover:before:from-foreground/[0.015]"
+                        "!justify-start !transition-all w-full text-foreground backdrop-blur-md hover:bg-popover aria-[current=page]:hover:before:from-foreground/[0.015] hover:shadow-[0px_0px_0px_1px_rgba(9,_9,_11,_.06),0px_2px_2px_0px_rgba(9,_9,_11,_.08)]"
                      }
                      to={"/"}
                   >
@@ -56,7 +53,7 @@ export function Sidebar() {
                         className: cn(buttonVariants(), "bg-transparent"),
                      }}
                      className={
-                        "w-full !justify-start text-foreground backdrop-blur-md !transition-all hover:bg-popover hover:shadow-[0px_0px_0px_1px_rgba(9,_9,_11,_.06),0px_2px_2px_0px_rgba(9,_9,_11,_.08)] aria-[current=page]:hover:before:from-foreground/[0.015]"
+                        "!justify-start !transition-all w-full text-foreground backdrop-blur-md hover:bg-popover aria-[current=page]:hover:before:from-foreground/[0.015] hover:shadow-[0px_0px_0px_1px_rgba(9,_9,_11,_.06),0px_2px_2px_0px_rgba(9,_9,_11,_.08)]"
                      }
                      to={"/whatever"}
                   >

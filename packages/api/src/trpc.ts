@@ -1,11 +1,11 @@
-import type { Context } from "hono"
 import { db } from "@acme/db/client"
 import { emails } from "@acme/emails"
-import { initTRPC, TRPCError } from "@trpc/server"
+import { TRPCError, initTRPC } from "@trpc/server"
 import { Ratelimit } from "@unkey/ratelimit"
+import type { Context } from "hono"
 import SuperJSON from "superjson"
 import { ZodError } from "zod"
-import { type Session } from "./auth"
+import type { Session } from "./auth"
 import { env } from "./env"
 
 export const createTRPCContext = (opts: {

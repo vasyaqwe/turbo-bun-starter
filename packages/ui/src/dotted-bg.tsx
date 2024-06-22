@@ -1,4 +1,4 @@
-import { type ComponentProps } from "react"
+import type { ComponentProps } from "react"
 import { cn } from "."
 
 export function DottedBg({ className, ...props }: ComponentProps<"div">) {

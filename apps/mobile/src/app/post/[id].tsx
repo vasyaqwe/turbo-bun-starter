@@ -1,5 +1,5 @@
-import { SafeAreaView } from "react-native"
 import { useGlobalSearchParams } from "expo-router"
+import { SafeAreaView } from "react-native"
 
 export default function Post() {
    const { id } = useGlobalSearchParams()

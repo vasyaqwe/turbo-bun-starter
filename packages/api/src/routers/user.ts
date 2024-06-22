@@ -1,5 +1,5 @@
-import type { db as database } from "@acme/db/client"
 import { eq } from "@acme/db"
+import type { db as database } from "@acme/db/client"
 import {
    emailVerificationCodes,
    insertUserParams,

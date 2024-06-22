@@ -1,6 +1,6 @@
 import { integer, pgEnum } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
-import { type z } from "zod"
+import type { z } from "zod"
 import { expenseNames } from "../config"
 import { createTable, id, lifecycleDates, newId } from "../utils"
 import { users } from "./users"

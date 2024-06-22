@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react"
+import { AnimatedButtonContent } from "@/components/animated-button-content"
+import { useTimer } from "@/hooks/use-timer"
+import { api } from "@/trpc/react"
 import { cn } from "@acme/ui"
 import { Button, buttonVariants } from "@acme/ui/button"
 import { Card } from "@acme/ui/card"
@@ -11,11 +13,9 @@ import {
    CheckCircleIcon,
    XCircleIcon,
 } from "@heroicons/react/24/outline"
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router"
+import { Link, createFileRoute, useNavigate } from "@tanstack/react-router"
 import { AnimatePresence, motion } from "framer-motion"
-import { AnimatedButtonContent } from "@/components/animated-button-content"
-import { useTimer } from "@/hooks/use-timer"
-import { api } from "@/trpc/react"
+import { useEffect, useState } from "react"
 
 export const Route = createFileRoute("/(auth)/_layout/login")({
    component: Page,
@@ -97,7 +97,7 @@ function Page() {
                      animate={{ opacity: 1, x: "0%" }}
                      className="flex flex-grow flex-col space-y-3"
                   >
-                     <h1 className="text-2xl font-bold leading-none">
+                     <h1 className="font-bold text-2xl leading-none">
                         {" "}
                         Log in to acme.
                      </h1>
@@ -145,7 +145,6 @@ function Page() {
                                     Verifying your code...
                                  </motion.span>
                               ) : (verifyCodeSuccess || verifyCodeError) &&
-                                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
                                 !verifyCodePending ? (
                                  <motion.span
                                     key={verifyCodePending.toString()}
@@ -201,7 +200,7 @@ function Page() {
                      exit={{ opacity: 0, x: "10%" }}
                      className="space-y-3"
                   >
-                     <h1 className="text-2xl font-bold leading-none">
+                     <h1 className="font-bold text-2xl leading-none">
                         {" "}
                         Log in to acme.
                      </h1>
@@ -324,20 +323,14 @@ function Page() {
                         </AnimatedButtonContent>
                      </Button>
 
-                     <p className="!mt-8 text-sm text-foreground/80">
+                     <p className="!mt-8 text-foreground/80 text-sm">
                         By clicking continue, you acknowledge that you have read
                         and agree to Acme's{" "}
-                        <Link
-                           to="/"
-                           className="underline"
-                        >
+                        <Link to="/" className="underline">
                            Terms of Service{" "}
                         </Link>{" "}
                         and{" "}
-                        <Link
-                           to="/"
-                           className="underline"
-                        >
+                        <Link to="/" className="underline">
                            Privacy Policy
                         </Link>
                         .

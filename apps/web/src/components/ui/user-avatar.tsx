@@ -1,7 +1,7 @@
-import { type ComponentProps } from "react"
-import { type User } from "@acme/db/schema/users"
+import type { User } from "@acme/db/schema/users"
 import { cn } from "@acme/ui"
 import { Avatar, AvatarFallback } from "@acme/ui/avatar"
+import type { ComponentProps } from "react"
 
 type UserAvatarProps = ComponentProps<typeof Avatar> & {
    user: Partial<User>

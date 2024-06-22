@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-properties */
 import { appRouter, createTRPCContext } from "@acme/api"
 import { getAuthSession, github, google, lucia } from "@acme/api/auth"
 import { and, eq, oauthAccounts, users } from "@acme/db"

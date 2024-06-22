@@ -22,7 +22,7 @@ const TableHeader = React.forwardRef<
    <thead
       ref={ref}
       className={cn(
-         "[&>tr]:bottom-0 [&>tr]:mt-1 [&>tr]:!border-0 [&>tr]:bg-transparent [&>tr]:before:h-0",
+         "[&>tr]:!border-0 [&>tr]:bottom-0 [&>tr]:mt-1 [&>tr]:before:h-0 [&>tr]:bg-transparent",
          className,
       )}
       {...props}
@@ -71,7 +71,7 @@ const TableHead = React.forwardRef<
    <th
       ref={ref}
       className={cn(
-         "h-11 px-4 pt-1 text-left align-middle text-[1.025rem] font-medium leading-none text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+         "h-11 px-4 pt-1 text-left align-middle font-medium text-[1.025rem] text-muted-foreground leading-none [&>[role=checkbox]]:translate-y-[2px] [&:has([role=checkbox])]:pr-0",
          className,
       )}
       {...props}
@@ -86,7 +86,7 @@ const TableRow = React.forwardRef<
    <tr
       ref={ref}
       className={cn(
-         `relative transition-colors before:absolute before:inset-0 before:bottom-0 before:z-[1] before:mx-auto before:h-px before:w-[calc(100%-2.25rem)] before:bg-border first:before:h-0 data-[state=selected]:bg-muted [&:first-child>td>div]:mt-1 [&:last-child>td>div]:mb-1`,
+         `relative transition-colors before:absolute before:inset-0 before:bottom-0 before:z-[1] before:mx-auto [&:first-child>td>div]:mt-1 [&:last-child>td>div]:mb-1 before:h-px first:before:h-0 before:w-[calc(100%-2.25rem)] before:bg-border data-[state=selected]:bg-muted`,
          //        [&:first-child>div]:border-t
          //   [&:first-child>td:first-child>div]:rounded-tl-md
          //   [&:first-child>td:last-child>div]:rounded-tr-md
@@ -112,7 +112,7 @@ const TableCell = React.forwardRef<
    <td
       ref={ref}
       className={cn(
-         `align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]`,
+         `align-middle [&>[role=checkbox]]:translate-y-[2px] [&:has([role=checkbox])]:pr-0`,
          className,
       )}
       {...props}

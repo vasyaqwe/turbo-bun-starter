@@ -1,9 +1,9 @@
+import { getQueryClient, getUrl } from "@/trpc/shared"
 import type { AppRouter } from "@acme/api"
 import { QueryClientProvider } from "@tanstack/react-query"
 import { httpBatchLink, loggerLink } from "@trpc/client"
 import { createTRPCQueryUtils, createTRPCReact } from "@trpc/react-query"
 import SuperJSON from "superjson"
-import { getQueryClient, getUrl } from "@/trpc/shared"
 
 export const api = createTRPCReact<AppRouter>({
    overrides: {
@@ -21,7 +21,6 @@ const trpcClient = api.createClient({
    links: [
       loggerLink({
          enabled: (op) =>
-            // eslint-disable-next-line no-restricted-properties
             process.env.NODE_ENV === "development" ||
             (op.direction === "down" && op.result instanceof Error),
       }),
@@ -52,10 +51,7 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
    const queryClient = getQueryClient()
 
    return (
-      <api.Provider
-         client={trpcClient}
-         queryClient={queryClient}
-      >
+      <api.Provider client={trpcClient} queryClient={queryClient}>
          <QueryClientProvider client={queryClient}>
             {props.children}
          </QueryClientProvider>

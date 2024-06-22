@@ -7,7 +7,7 @@ function Skeleton({
    return (
       <div
          className={cn(
-            `relative overflow-hidden rounded-md bg-border/50 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-border before:to-transparent`,
+            `before:-translate-x-full relative overflow-hidden rounded-md bg-border/50 before:absolute before:inset-0 before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-border before:to-transparent`,
             className,
          )}
          {...props}

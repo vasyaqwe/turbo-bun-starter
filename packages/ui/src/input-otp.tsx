@@ -1,7 +1,7 @@
 "use client"
 
-import * as React from "react"
 import { OTPInput, OTPInputContext } from "input-otp"
+import * as React from "react"
 import { cn } from "."
 
 const InputOTP = React.forwardRef<
@@ -42,7 +42,7 @@ const InputOTPSlot = React.forwardRef<
       <div
          ref={ref}
          className={cn(
-            `border-input relative flex h-12 flex-[0_0_16.66%] items-center justify-center border-y border-r bg-background text-xl transition-all first:rounded-l-md first:border-l last:rounded-r-md md:h-14 md:text-2xl lg:first:rounded-l-lg lg:last:rounded-r-lg`,
+            `relative flex h-12 flex-[0_0_16.66%] items-center justify-center border-input border-y border-r bg-background text-xl transition-all md:h-14 last:rounded-r-md lg:last:rounded-r-lg first:rounded-l-md lg:first:rounded-l-lg first:border-l md:text-2xl`,
             inputOTPContext.slots[index]?.isActive && "ring ring-border/40",
             className,
          )}
@@ -63,11 +63,7 @@ const InputOTPSeparator = React.forwardRef<
    React.ElementRef<"div">,
    React.ComponentPropsWithoutRef<"div">
 >(({ ...props }, ref) => (
-   <div
-      ref={ref}
-      role="separator"
-      {...props}
-   >
+   <div ref={ref} {...props}>
       •
    </div>
 ))

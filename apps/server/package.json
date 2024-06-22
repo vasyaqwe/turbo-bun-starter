@@ -1,25 +1,21 @@
 {
-  "name": "@acme/server",
-  "version": "0.0.1",
-  "type": "module",
-  "main": "src/index.ts",
-  "scripts": {
-    "dev": "nodemon",
-    "start": "bun run --env-file=../../.env ./src/index.ts",
-    "lint": "eslint",
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@acme/api": "workspace:*",
-    "@acme/db": "workspace:*",
-    "@hono/trpc-server": "^0.3.1"
-  },
-  "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
-    "@types/bun": "latest",
-    "typescript": "^5.4.5"
-  },
-  "prettier": "@acme/prettier-config"
+   "name": "@acme/server",
+   "version": "0.0.1",
+   "type": "module",
+   "main": "src/index.ts",
+   "scripts": {
+      "dev": "nodemon",
+      "start": "bun run --env-file=../../.env ./src/index.ts",
+      "typecheck": "tsc --noEmit"
+   },
+   "dependencies": {
+      "@acme/api": "workspace:*",
+      "@acme/db": "workspace:*",
+      "@hono/trpc-server": "^0.3.1"
+   },
+   "devDependencies": {
+      "@acme/tsconfig": "workspace:*",
+      "@types/bun": "latest",
+      "typescript": "^5.4.5"
+   }
 }

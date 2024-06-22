@@ -1,5 +1,5 @@
-import React from "react"
 import { Body, Button, Container, Tailwind } from "@react-email/components"
+import type React from "react"
 
 function EmailButton({
    href,
@@ -12,7 +12,7 @@ function EmailButton({
       <Button
          target="_blank"
          href={href}
-         className="rounded-md bg-[#3b8ffc] px-5 py-2 text-[14px] font-semibold text-white no-underline"
+         className="rounded-md bg-[#3b8ffc] px-5 py-2 font-semibold text-[14px] text-white no-underline"
       >
          {children}
       </Button>

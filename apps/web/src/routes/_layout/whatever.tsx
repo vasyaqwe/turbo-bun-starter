@@ -1,3 +1,7 @@
+import { expenseNamesColors } from "@/config"
+import { formatCurrency } from "@/lib/utils"
+import { Intro } from "@/routes/-components/intro"
+import { api } from "@/trpc/react"
 import { Badge } from "@acme/ui/badge"
 import { Card } from "@acme/ui/card"
 import { Skeleton } from "@acme/ui/skeleton"
@@ -11,10 +15,6 @@ import {
 } from "@acme/ui/table"
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline"
 import { createFileRoute } from "@tanstack/react-router"
-import { expenseNamesColors } from "@/config"
-import { formatCurrency } from "@/lib/utils"
-import { Intro } from "@/routes/-components/intro"
-import { api } from "@/trpc/react"
 
 export const Route = createFileRoute("/_layout/whatever")({
    component: Page,
@@ -27,7 +27,7 @@ function Page() {
       <div className="w-full py-6">
          <Intro />
          <Card className="mt-5 p-5 pt-4">
-            <h2 className="mb-4 text-xl font-bold">Expenses</h2>
+            <h2 className="mb-4 font-bold text-xl">Expenses</h2>
             {isError ? (
                <div className="py-4 text-red-500">
                   <ExclamationCircleIcon className="mx-auto size-10" />
@@ -60,10 +60,7 @@ function Page() {
                                 </TableRow>
                              ))
                         : expenses.map((expense) => (
-                             <TableRow
-                                className="w-[100px]"
-                                key={expense.id}
-                             >
+                             <TableRow className="w-[100px]" key={expense.id}>
                                 <TableCell className="capitalize">
                                    <Badge
                                       style={

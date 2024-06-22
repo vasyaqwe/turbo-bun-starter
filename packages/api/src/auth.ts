@@ -1,14 +1,14 @@
-import type { Context } from "hono"
 import { eq } from "@acme/db"
 import { db } from "@acme/db/client"
 import {
+   type User,
    emailVerificationCodes,
    sessions,
-   type User,
    users,
 } from "@acme/db/schema/users"
 import { DrizzlePostgreSQLAdapter } from "@lucia-auth/adapter-drizzle"
 import { GitHub, Google } from "arctic"
+import type { Context } from "hono"
 import { getCookie } from "hono/cookie"
 import { Lucia, TimeSpan } from "lucia"
 import { createDate } from "oslo"
@@ -19,7 +19,7 @@ export const github = new GitHub(env.GITHUB_CLIENT_ID, env.GITHUB_CLIENT_SECRET)
 export const google = new Google(
    env.GOOGLE_CLIENT_ID,
    env.GOOGLE_CLIENT_SECRET,
-   env.VITE_SERVER_URL + "/login/google/callback",
+   `${env.VITE_SERVER_URL}/login/google/callback`,
 )
 
 export const initLucia = () => {

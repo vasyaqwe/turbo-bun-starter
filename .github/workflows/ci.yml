@@ -18,8 +18,8 @@ jobs:
          - name: Setup
            uses: ./tooling/github/setup
 
-         - name: Lint
-           run: bun lint
+         - name: Lint & format
+           run: pnpm format-lint && pnpm format-lint:ws
 
    typecheck:
       runs-on: ubuntu-latest
@@ -30,4 +30,4 @@ jobs:
            uses: ./tooling/github/setup
 
          - name: Typecheck
-           run: bun typecheck
+           run: pnpm typecheck

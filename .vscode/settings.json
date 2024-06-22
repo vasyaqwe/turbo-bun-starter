@@ -1,7 +1,14 @@
 {
-   "eslint.workingDirectories": [
-      {
-         "mode": "auto"
-      }
-   ]
+   "editor.defaultFormatter": "biomejs.biome",
+   "editor.codeActionsOnSave": {
+      "source.organizeImports.biome": "explicit"
+   },
+   "emeraldwalk.runonsave": {
+      "commands": [
+         {
+            "match": "\\.(ts|tsx|js|jsx|html)$",
+            "cmd": "pnpm biome lint ${file} --apply-unsafe"
+         }
+      ]
+   }
 }

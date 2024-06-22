@@ -7,8 +7,6 @@ WORKDIR /app
 
 # Copy app source
 COPY ./package.json ./bun.lockb ./
-COPY ./tooling/eslint/package.json ./tooling/eslint/package.json
-COPY ./tooling/prettier/package.json ./tooling/prettier/package.json
 COPY ./tooling/typescript/package.json ./tooling/typescript/package.json
 COPY ./packages/db/package.json ./packages/db/package.json
 COPY ./packages/api/package.json ./packages/api/package.json

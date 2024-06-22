@@ -1,8 +1,8 @@
+import { env } from "@/env"
 import { toast } from "@acme/ui/toast"
 import { QueryClient } from "@tanstack/react-query"
-import { env } from "@/env"
 
-export const getUrl = () => env.VITE_SERVER_URL + "/trpc"
+export const getUrl = () => `${env.VITE_SERVER_URL}/trpc`
 
 const createQueryClient = () =>
    new QueryClient({
@@ -17,4 +17,5 @@ const createQueryClient = () =>
 
 let clientQueryClientSingleton: QueryClient | undefined = undefined
 export const getQueryClient = () =>
+   // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
    (clientQueryClientSingleton ??= createQueryClient())

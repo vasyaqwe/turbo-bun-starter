@@ -1,41 +1,33 @@
 {
-  "name": "acme-turbo",
-  "private": true,
-  "packageManager": "bun@1.1.15",
-  "scripts": {
-    "build": "turbo build",
-    "build:web": "turbo build --filter=@acme/web",
-    "start": "turbo start",
-    "clean": "git clean -xdf node_modules",
-    "clean:workspaces": "turbo clean",
-    "db:push": "bun --filter @acme/db push",
-    "db:studio": "bun --filter @acme/db studio",
-    "dev": "turbo dev --parallel",
-    "dev:web": "turbo dev --filter=@acme/web --filter=@acme/ui --filter=@acme/server",
-    "dev:mobile": "turbo dev --filter=@acme/mobile --filter=@acme/server",
-    "format": "turbo format --continue -- --cache --cache-location node_modules/.cache/.prettiercache",
-    "format:fix": "turbo format --continue -- --write --cache --cache-location node_modules/.cache/.prettiercache",
-    "lint": "turbo lint --continue -- --cache --cache-location node_modules/.cache/.eslintcache",
-    "lint:fix": "turbo lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
-    "typecheck": "turbo typecheck",
-    "ui-add": "bun --filter @acme/ui ui-add"
-  },
-  "workspaces": [
-    "apps/*",
-    "packages/*",
-    "tooling/*"
-  ],
-  "devDependencies": {
-    "@acme/prettier-config": "workspace:*",
-    "@turbo/gen": "^2.0.3",
-    "prettier": "^3.2.5",
-    "turbo": "^2.0.3",
-    "typescript": "^5.4.5"
-  },
-  "prettier": "@acme/prettier-config",
-  "trustedDependencies": [
-    "core-js",
-    "core-js-pure",
-    "es5-ext"
-  ]
+   "name": "acme-turbo",
+   "private": true,
+   "packageManager": "pnpm@9.1.0",
+   "scripts": {
+      "build": "turbo build",
+      "build:web": "turbo build --filter=@acme/web",
+      "start": "turbo start",
+      "clean": "git clean -xdf node_modules",
+      "clean:workspaces": "turbo clean",
+      "db:push": "pnpm -F @acme/db push",
+      "db:studio": "pnpm -F @acme/db studio",
+      "dev": "turbo dev --parallel",
+      "dev:web": "turbo dev --filter=@acme/web --filter=@acme/ui --filter=@acme/server",
+      "dev:mobile": "turbo dev --filter=@acme/mobile --filter=@acme/server",
+      "format-lint": "biome check .",
+      "format-lint:fix": "biome check . --write",
+      "format-lint:ws": "pnpm dlx sherif@latest",
+      "postinstall": "pnpm lint:ws",
+      "typecheck": "turbo typecheck"
+   },
+   "workspaces": [
+      "apps/*",
+      "packages/*",
+      "tooling/*"
+   ],
+   "devDependencies": {
+      "@biomejs/biome": "1.8.2",
+      "@turbo/gen": "^2.0.3",
+      "turbo": "^2.0.3",
+      "typescript": "^5.4.5"
+   }
 }

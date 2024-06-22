@@ -1,4 +1,3 @@
-import React from "react"
 import {
    Head,
    Html,
@@ -30,14 +29,14 @@ export function VerificationCodeEmail({
                />
             </Section>
 
-            <Text className="mx-0 my-[30px] p-0 text-[24px] font-normal text-black">
+            <Text className="mx-0 my-[30px] p-0 font-normal text-[24px] text-black">
                Your Acme verification code
             </Text>
 
-            <Text className="text-[28px] font-bold leading-[24px] tracking-widest text-black">
+            <Text className="font-bold text-[28px] text-black leading-[24px] tracking-widest">
                {verificationCode}
             </Text>
-            <Text className="text-[14px] leading-[24px] text-gray-700">
+            <Text className="text-[14px] text-gray-700 leading-[24px]">
                The code will expire in 15 minutes.
             </Text>
          </EmailBody>
