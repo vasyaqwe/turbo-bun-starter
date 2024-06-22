@@ -1,17 +1,4 @@
 {
-   "extends": "@acme/tsconfig/base.json",
-   "compilerOptions": {
-      "useDefineForClassFields": true,
-      "lib": ["ES2022", "DOM", "DOM.Iterable"],
-      "module": "esnext",
-      "moduleResolution": "bundler",
-      "allowImportingTsExtensions": true,
-      "jsx": "react-jsx",
-      "baseUrl": ".",
-      "paths": {
-         "@/*": ["./src/*"]
-      },
-      "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
-   },
+   "extends": ["@acme/tsconfig/base.json", "./tsconfig.json"],
    "include": ["src"]
 }

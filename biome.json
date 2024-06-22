@@ -12,7 +12,8 @@
          "dist/**",
          "**/.expo/**/*",
          "**/routeTree.gen.ts",
-         ".expo-env.d.ts"
+         ".expo-env.d.ts",
+         ".turbo"
       ]
    },
    "javascript": {
@@ -59,7 +60,8 @@
          "dist/**",
          "**/.expo/**/*",
          "**/routeTree.gen.ts",
-         ".expo-env.d.ts"
+         ".expo-env.d.ts",
+         ".turbo"
       ]
    }
 }

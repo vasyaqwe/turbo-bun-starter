@@ -61,7 +61,6 @@ export default {
             button:
                "0px 0px 0px 0.5px hsl(var(--background)/.2),0px 1px 1px -1px hsl(var(--background)/.2),0px 2px 2px -1px hsl(var(--background)/.2),inset 0px 0.5px 0px hsla(0,0%,100%,.0),inset 0px 0px 1px 0px hsla(0,0%,100%,0),inset 0px -6px 12px -4px hsl(var(--background)/.2)",
             shadow: "var(--shadow)",
-            "shadow-lighter": "var(--shadow-lighter)",
          },
       },
    },
