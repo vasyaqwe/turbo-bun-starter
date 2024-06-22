@@ -30,7 +30,7 @@
    },
    "license": "MIT",
    "scripts": {
-      "build": "tsc && drizzle-kit push",
+      "build": "tsc",
       "clean": "rm -rf .turbo node_modules",
       "push": "pnpm with-env drizzle-kit push",
       "studio": "pnpm with-env drizzle-kit studio",

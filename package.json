@@ -3,7 +3,7 @@
    "private": true,
    "packageManager": "pnpm@9.1.0",
    "scripts": {
-      "build": "turbo build",
+      "build": "turbo build && pnpm db:push",
       "build:web": "turbo build --filter=@acme/web",
       "start": "turbo start",
       "clean": "git clean -xdf node_modules",
