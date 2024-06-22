@@ -16,7 +16,7 @@
       "format-lint": "biome check .",
       "format-lint:fix": "biome check . --write",
       "format-lint:ws": "pnpm dlx sherif@latest",
-      "postinstall": "pnpm lint:ws",
+      "postinstall": "pnpm format-lint:ws",
       "typecheck": "turbo typecheck"
    },
    "workspaces": [

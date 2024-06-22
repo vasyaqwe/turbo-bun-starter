@@ -6,7 +6,7 @@ FROM ${BUN_IMAGE_PROD} AS base
 WORKDIR /app
 
 # Copy app source
-COPY ./package.json ./bun.lockb ./
+COPY ./package.json ./
 COPY ./tooling/typescript/package.json ./tooling/typescript/package.json
 COPY ./packages/db/package.json ./packages/db/package.json
 COPY ./packages/api/package.json ./packages/api/package.json
@@ -19,7 +19,7 @@ FROM base AS install-prod
 COPY ./tooling ./tooling
 COPY ./packages ./packages
 COPY ./apps/server ./apps/server
-RUN rm -rf bun.lockb && bun install --ignore-scripts --production
+RUN bun install --ignore-scripts --production
 
 # Build
 FROM base AS build
