@@ -1,5 +1,4 @@
 import { Body, Button, Container, Tailwind } from "@react-email/components"
-import type React from "react"
 
 function EmailButton({
    href,

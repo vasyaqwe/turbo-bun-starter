@@ -19,11 +19,7 @@
       "postinstall": "pnpm format-lint:ws",
       "typecheck": "turbo typecheck"
    },
-   "workspaces": [
-      "apps/*",
-      "packages/*",
-      "tooling/*"
-   ],
+   "workspaces": ["apps/*", "packages/*", "tooling/*"],
    "devDependencies": {
       "@biomejs/biome": "1.8.2",
       "@turbo/gen": "^2.0.3",

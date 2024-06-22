@@ -12,12 +12,12 @@ import { createFileRoute } from '@tanstack/react-router'
 
 // Import Routes
 
+import { Route as authLayoutImport } from './routes/(auth)/_layout'
+import { Route as authLayoutLoginImport } from './routes/(auth)/_layout/login'
 import { Route as rootRoute } from './routes/__root'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as LayoutIndexImport } from './routes/_layout/index'
 import { Route as LayoutWhateverImport } from './routes/_layout/whatever'
-import { Route as authLayoutImport } from './routes/(auth)/_layout'
-import { Route as authLayoutLoginImport } from './routes/(auth)/_layout/login'
 
 // Create Virtual Routes
 

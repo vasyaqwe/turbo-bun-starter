@@ -10,11 +10,13 @@
       "attributePosition": "auto",
       "ignore": [
          "dist/**",
+         "**/.expo/**/*",
          "**/tsconfig.json",
          "**/base.json",
          "**/tsconfig.prod.json",
          "**/routeTree.gen.ts",
-         "biome.json"
+         "biome.json",
+         ".expo-env.d.ts"
       ]
    },
    "organizeImports": {
@@ -47,10 +49,12 @@
       },
       "ignore": [
          "dist/**",
+         "**/.expo/**/*",
          "**/tsconfig.json",
          "**/base.json",
          "**/tsconfig.prod.json",
-         "**/routeTree.gen.ts"
+         "**/routeTree.gen.ts",
+         ".expo-env.d.ts"
       ]
    },
    "javascript": {
