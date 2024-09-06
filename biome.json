@@ -7,13 +7,16 @@
       "indentWidth": 3,
       "lineEnding": "lf",
       "lineWidth": 80,
-      "attributePosition": "multiline",
+      "attributePosition": "multiline"
+   },
+   "files": {
       "ignore": [
-         "dist/**",
-         "**/.expo/**/*",
-         "**/routeTree.gen.ts",
-         ".expo-env.d.ts",
-         ".turbo"
+         "expo-plugins",
+         ".expo",
+         "dist",
+         ".next",
+         ".turbo",
+         "routeTree.gen.ts"
       ]
    },
    "javascript": {
@@ -35,14 +38,22 @@
       "enabled": true,
       "rules": {
          "recommended": true,
+         "security": {
+            "noDangerouslySetInnerHtml": "off"
+         },
          "style": {
-            "noUnusedTemplateLiteral": "off"
+            "useNumberNamespace": "off",
+            "noUnusedTemplateLiteral": "off",
+            "useNodejsImportProtocol": "off"
          },
          "correctness": {
+            "noUnusedVariables": "error",
             "noUnusedImports": "error"
          },
          "a11y": {
-            "noSvgWithoutTitle": "off"
+            "noSvgWithoutTitle": "off",
+            "useKeyWithClickEvents": "off",
+            "useButtonType": "off"
          },
          "suspicious": {
             "noArrayIndexKey": "off"
@@ -55,13 +66,6 @@
                }
             }
          }
-      },
-      "ignore": [
-         "dist/**",
-         "**/.expo/**/*",
-         "**/routeTree.gen.ts",
-         ".expo-env.d.ts",
-         ".turbo"
-      ]
+      }
    }
 }

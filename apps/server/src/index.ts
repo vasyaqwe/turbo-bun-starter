@@ -103,7 +103,7 @@ app.get("/login/github/callback", async (ctx) => {
          sameSite: env.NODE_ENV === "production" ? "none" : "lax",
       })
       return ctx.redirect(`${env.VITE_BASE_URL}`)
-   } catch (e) {
+   } catch (_e) {
       throw new HTTPException(500, { message: "An unknown error occurred" })
    }
 })
@@ -192,9 +192,9 @@ app.get("/login/google/callback", async (ctx) => {
          ...sessionCookie.attributes,
          sameSite: env.NODE_ENV === "production" ? "none" : "lax",
       })
-      console.log("Created user", createdUser, "hello")
+
       return ctx.redirect(`${env.VITE_BASE_URL}`)
-   } catch (e) {
+   } catch (_e) {
       throw new HTTPException(500, { message: "An unknown error occurred" })
    }
 })
